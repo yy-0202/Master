@@ -1,0 +1,24 @@
+1.セカンダリーサーバーの設定
+セカンダリーサーバーdnssv02.dns.com上で以下を実施
+
+# yum -y install bind bind-utils
+# vim /etc/named.conf
+
+#以下をnamed,confに追記
+/etc/named.conf
+zone "dns.com" IN {
+        type slave;
+        masters { 172.18.100.101; };
+        file "slaves/dns.com.sec";
+        notify no;
+};
+
+# systemctl restart named
+# systemctl status named
+
+# ls /var/named/slaves
+//ゾーンファイルが転送されていることを確認する。
+
+2.確認
+プライマリーサーバーがダウンしても名前解決できることを
+クライアントで確認する。
