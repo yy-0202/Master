@@ -1,5 +1,6 @@
 VPN通信用のPPPoEサーバーをCentOS7で構築
 ルーターを2台用意し、拠点間接続を実施する想定
+CentOS Linux release 7.6.1810 (Core)
 
 ルーターの情報
 ユーザーID R1
