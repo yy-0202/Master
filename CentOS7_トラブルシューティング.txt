@@ -79,5 +79,8 @@ firewall-cmd
 nmcli c 
 nmcli d
 
+10.yumが使えない
+rm -f /var/run/yum.pid
+
 
 
