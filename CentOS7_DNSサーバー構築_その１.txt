@@ -2,8 +2,8 @@
 Vmware Vsphere Clientを使用する。
 仮想ルーター（Vyos）を使用して、インターネット接続する。
 VyosのLAN側IPアドレスは172.18.100.254、WAN側はDHCPでIPアドレスを取得する。
-
 CentOS7のDNSサーバーは２台、クライアント用CentOS7を１台用意する。
+CentOS Linux release 7.6.1810 (Core)
 
 各種設定
 プライマリDNSサーバー
