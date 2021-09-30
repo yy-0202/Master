@@ -1,5 +1,7 @@
 1.前提
 ・CentOS7でDHCPサーバーを構築
+・CentOS7のバージョンは以下
+CentOS Linux release 7.6.1810 (Core)
 ・VMware Vsphere Client 7.0を使用して、仮想サーバーを構築する。
 ・サーバーおよびクライアントのスペックは以下の通り
 CPU1コア4ソケット
