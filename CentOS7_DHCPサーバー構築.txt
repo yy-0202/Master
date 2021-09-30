@@ -1,0 +1,40 @@
+1.前提
+・CentOS7でDHCPサーバーを構築
+・VMware Vsphere Client 7.0を使用して、仮想サーバーを構築する。
+・サーバーおよびクライアントのスペックは以下の通り
+CPU1コア4ソケット
+メモリ4GB
+ハードディスク　32GB　シンプロビジョニング
+・サーバーの情報
+DHCPサーバー01
+ホスト名:dhcpsv01
+FQDN:dhcpsv01.dhcp.com
+ドメイン:dhcp.com
+IPアドレス:172.18.100.51/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+※DGWは仮想ルーターvyosのLAN側インターフェイス
+・配布IPアドレス:172.18.100.61 172.18.100.70
+・作業は su - でrootユーザーとなり実施する。
+・FWは無効にする。
+・参考
+https://www.rem-system.com/centos76-dhcpd/
+
+2.DHCPパッケージのインストール
+# yum -y install dhcp
+
+3.dhcp.confの編集
+# vim /etc/dhcp/dhcpd.conf
+subnet 172.18.100.0 netmask 255.255.255.0 {
+range 172.18.100.61 172.18.100.70;
+option domain-name-servers 8.8.8.8;
+option domain-name "dhcp.com";
+option routers 172.18.100.254;
+option broadcast-address 172.18.100.255;
+default-lease-time 28800;
+max-lease-time 43200;
+}
+
+4.起動
+# systemctl start dhcpd
+# systemctl enable dhcpd
