@@ -1,0 +1,118 @@
+1.要件
+・CentOS7.xにDHCPサーバーを導入する。
+・ハイパーバイザーはVMware Vsphere Client v7.0を使用する。
+・仮想サーバーとしてCentOS7を構築済みであることとする。
+・クライアントも同じく仮想サーバーとしてCentOS7を使用する。
+・2台のサーバーを用いてFailoverを実現する。
+・サーバーおよびクライアントのスペックは以下の通りである。
+CPU1コア4ソケット
+メモリ4GB
+ハードディスク　32GB
+Centos linux release 7.8.2003 (core)
+・サーバーの情報は以下の通りである。
+
+DHCPサーバー01
+hostname:dhcpsv01
+domain:dhcp.com
+FQDN:dhcpsv01.dhcp.com
+IP address:172.18.100.51/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+
+DHCPサーバー02
+hostname:dhcpsv02
+domain:dhcp.com
+FQDN:dhcpsv02.dhcp.com
+IP address:172.18.100.52/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+
+・クライアントの情報は以下の通りである。
+DHCPクライアント01
+hostname:dhcpcli01
+domain:dhcp.com
+FQDN:dhcpcli01.dhcp.com
+
+※DGWは仮想ルーターvyosのLAN側IPアドレスである。
+・サーバー、クライアントは172.18.100.0/24の同セグメント内に存在しているとする。
+・selinuxは無効化しているものとする。
+・クライアントに対して配布するIPアドレスの範囲は172.18.100.61 172.18.100.70とする。
+・参考
+https://blog.clarus.jp/posts/build-a-dhcp-server-with-failover-function/
+
+2.インストール
+２台のサーバーで共通の作業
+
+# yum -y install dhcp
+
+3.DHCPサーバー01の設定
+# vim /etc/dhcp/dhcpd.conf
+
+failover peer "failover-partner" {     
+	primary;                              
+	address 172.18.100.51;                
+	port 520;                             
+	peer address 172.18.100.52;           
+	peer port 520;                        
+	max-response-delay 60;
+	max-unacked-updates 10;
+	mclt 3600;
+	split 128;
+	load balance max seconds 3;
+}
+
+log-facility local6;
+
+include "/etc/dhcp/dhcpd.conf.master";  
+
+4.DHCPサーバー02の設定
+# vim /etc/dhcp/dhcpd.conf
+
+failover peer "failover-partner" {      
+	secondary;                           
+	address 172.18.100.52;                
+	port 520;                            
+	peer address 172.18.100.51;           
+	peer port 209;                       
+	max-response-delay 60;
+	max-unacked-updates 10;
+	mclt 3600;
+	split 128;
+	load balance max seconds 3;
+}
+
+log-facility local6;
+
+include "/etc/dhcp/dhcpd.conf.master";  
+
+5.共通設定
+# vim /etc/dhcp/dhcpd.conf.master
+
+default-lease-time 21600;
+max-lease-time 42300;
+
+option domain-name "dhcp.com";
+option domain-name-servers ***.***.***.***;
+ddns-update-style none;
+authoritative;
+
+# Server
+subnet 172.18.100.0 netmask 255.255.255.0 {
+	option routers 172.18.100.254;
+	option broadcast-address 172.18.100.255;
+	option subnet-mask 255.255.255.0;
+	pool {
+		failover peer "failover-partner";     
+		range 172.18.100.61 172.18.100.70;
+		deny dynamic bootp clients;
+	}
+}
+
+6.FW
+# systemctl stop firewalld
+# systemctl disable firewalld
+
+7.起動
+# systemctl start dhcpd
+# systemctl enable dhcpd
+# systemctl status dhcpd
