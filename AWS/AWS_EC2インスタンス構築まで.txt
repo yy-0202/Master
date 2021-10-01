@@ -1,0 +1,63 @@
+1.VPC
+choose 「VPC」under VIRTUAL PRIVATE CLOUD
+Name:my-vpc-01
+CIDR:10.0.0.0/16
+create
+
+2.SUBNET
+Name:my-subnet-01
+CIDR:10.0.0.0/24
+create
+
+3.ROUTE TABLE
+Name:my-route-table-01
+VPC:my-vpc-01
+
+4.INTERNET GATEWAY
+Name:Name:My-igw-01
+Attachement:my-vpc-01
+
+5.Edit
+ROUTETABLE
+choose my-vpc-01
+choose 「Routs」on the bottom of the page
+choose 「edit routes」
+Destination:0.0.0.0/0
+Target:my-igw-01
+Save changes
+
+SUBNET
+choose my-subnet-01
+choose 「Route table」on the bottom of the page
+choose 「Edit route table association」
+choose 「Route table ID」→my-route-table-01
+save
+
+6.Building an EC2 instance
+choose 「EC2」→「EC2 Dashboard」
+Launch instance
+
+ 1.Choose AMI
+ select 「Amazon Linux 2 AMI (HVM), SSD Volume 」 top of the page
+
+ 2.Choose Instance Type
+ select 「t2 micro」
+
+ 3.Configure Instance
+ Number of instances:1
+ Network:my-vpc-01
+ Subnet:my-subnet-01
+ 
+ 4.Add Storage
+→default
+ 5.Add Tags
+→default
+ 6.Configure Security Group
+→check 「SSH」 is already selected
+ 7.Review
+→Launch
+ 8.Select an existing key pair or create a new key pair 
+create a new key pair
+Key pair name:my-key-pair-01
+→Download Key Pair
+→Launch Instances
