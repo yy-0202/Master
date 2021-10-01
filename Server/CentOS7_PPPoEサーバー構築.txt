@@ -1,16 +1,14 @@
 VPN通信用のPPPoEサーバーをCentOS7で構築
-ルーターを2台用意し、拠点間接続を実施する想定
+ルーターを2台用意し、2拠点間接続を実施する想定
 
 ルーターの情報
 ユーザーID R1
 パスワード　P@ssw0rd
 ルーター1のWAN側IP 10.10.10.1
-ルーター1のLAN側IP 172.18.100.254
 
 ユーザーID R2
 パスワード　P@ssw0rd
 ルーター2のWAN側IP 10.10.10.2
-ルーター2のLAN側IP 192.168.0.254
 
 端末のVMware Workstation Player 16にCentOS7をインストールする。
 CentOS7はインターネット接続できるように設定
@@ -87,6 +85,7 @@ reboot
 # pppoe-server -I ens192
 
 以下でも可
+# ifconfig ens192 down
 # pppoe-server -I ens192 -L 10.0.0.1
 
 10.確認
@@ -94,3 +93,4 @@ reboot
 ip a 
 nmcli c 
 nmcli d 
+route
