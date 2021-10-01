@@ -1,0 +1,31 @@
+1.前提
+・Win10端末から作成済みのEC2インスタンスにSSH接続する。
+・VPC、サブネット、ルートテーブルが作成済みであること。
+・EC2インスタンスが作成済みであること。
+・VPC:10.0.0.0/16
+・subnet:10.0.0.0/24
+・EC2のpublicIPアドレスは10.0.0.254とする。
+・pemキーが端末にダウンロードされていること
+・pemキーはC:\直下に格納していること
+・キーペアはmy-key-pair-01.pemを使用
+
+2.権限付与
+powershellを使用する。
+cd C:\でCに移動する。
+
+権限の確認
+dir
+icacls my-key-pair-01.pem
+
+権限の削除
+icacls my-key-pair-01.pem /inheritance:r
+
+権限付与
+icacls my-key-pair-01.pem /grant ユーザー名:(F)
+
+3.ログイン
+powershellで以下を実行
+ssh -i "my-key-pair-01.pem" ec2-user@10.0.0.254
+
+もしくは
+ターミナルソフトでログイン
