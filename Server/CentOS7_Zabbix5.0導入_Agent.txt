@@ -1,0 +1,30 @@
+CentOS7_Zabbix5.0導入.txtの続き
+
+
+1.エージェント側でagentをインストール
+# yum -y install zabbix-agent
+
+起動
+# systemctl start zabbix-agent 
+# systemctl enable zabbix-agent 
+
+2.zabbix_agentd.confの編集
+# vim /etc/zabbix/zabbix_agentd.conf
+Server=172.18.100.81 #サーバーのIP
+ServerActive=172.18.100.81:10051
+
+3.サーバー側のWebGUIでの操作
+ホーム画面、左メニューの設定、ホストを選択
+ホストの作成
+・ホスト名：Agentがインストールされているホスト名
+・グループ：Linux Servers
+※選択ボタンを押し、Linux Serversテンプレートを選択
+・インターフェース
+エージェント：AgentをインストールしてるサーバーのIPアドレスを入力
+DNS名：※hostsファイルに登録した名称を入力
+・テンプレートタブを選択
+選択ボタンをクリックし、目的に合ったテンプレートを作成
+今回はTemplate OS Linux by Zabbix Agentを選択
+・追加
+
+4.ダッシュボードなどでホスト数が増加していることを確認
