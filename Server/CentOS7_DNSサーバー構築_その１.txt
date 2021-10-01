@@ -1,0 +1,40 @@
+前提
+Vmware Vsphere Clientを使用する。
+仮想ルーター（Vyos）を使用して、インターネット接続する。
+VyosのLAN側IPアドレスは172.18.100.254、WAN側はDHCPでIPアドレスを取得する。
+
+CentOS7のDNSサーバーは２台、クライアント用CentOS7を１台用意する。
+
+各種設定
+プライマリDNSサーバー
+IPアドレス:172.18.100.101/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+hostname:dnssv01.dns.com
+domain:dns.com
+
+セカンダリDNSサーバー
+IPアドレス:172.18.100.102/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+hostname:dnssv02.dns.com
+domain:dns.com
+
+クライアント用サーバー
+IPアドレス:172.18.100.100/24
+DGW:172.18.100.254
+DNS:172.18.100.101,172.18.100.102
+hostname:dnscli01.dns.com
+domain:dns.com
+
+各サーバー、クライアントの/etc/hostsに
+172.18.100.101 dnssv01.dns.com dnssv01
+172.18.100.102 dnssv02.dns.com dnssv02
+172.18.100.100 dnscli01.dns.com dnscli01
+を追記
+
+以上の設定を実施する。
+
+通信
+DGW:172.18.100.254と8.8.8.8へ疎通が可能なこと。
+各ノード間でネットワーク的に疎通が可能なこと。
