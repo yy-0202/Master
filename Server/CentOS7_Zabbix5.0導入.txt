@@ -1,0 +1,165 @@
+1.要件
+・CentOS7.xに運用監視ツールZabbix5.0を導入する。
+・ハイパーバイザーはVMware Vsphere Client v7.0を使用する。
+・仮想サーバーとしてCentOS7を構築済みであることとする。
+・エージェント用のクライアントも同じく仮想サーバーとして
+CentOS7を使用する。
+・サーバーおよびクライアントのスペックは以下の通りである。
+CPU1コア4ソケット
+メモリ4GB
+ハードディスク　32GB
+Centos linux release 7.8.2003 (core)
+・サーバーの情報は以下の通りである。
+Zabbixサーバー01
+hostname:zabsv01
+domain:zab.com
+FQDN:zabsv01.zab.com
+IP address:172.18.100.81/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+・クライアント（エージェント）の情報は以下の通りである。
+Zabbixクライアント01
+hostname:zabcli01
+domain:zab.com
+FQDN:zabcli01.zab.com
+IP address:172.18.100.82/24
+DGW:172.18.100.254
+DNS:8.8.8.8
+※DGWは仮想ルーターvyosのLAN側IPアドレスである。
+・サーバー、クライアントは172.18.100.0/24の同セグメント内に
+存在しているとする。
+・selinuxは無効化しているものとする。
+・参考
+https://www.zabbix.com/download?zabbix=5.0&os_distribution=centos&os_version=7&db=mysql&ws=apache
+https://qiita.com/atanaka7/items/429d7a3151542420c944
+
+2.Zabbixリポジトリ登録とインストール
+リポジトリの登録
+# yum -y install https://repo.zabbix.com/zabbix/5.0/rhel/7/x86_64/zabbix-release-5.0-1.el7.noarch.rpm
+# yum clean all
+
+インストール
+# yum -y install zabbix-server-mysql zabbix-agent
+
+3.mariadbのインストール
+# yum install mariadb-server
+# systemctl start mariadb
+# systemctl enable mariadb
+# mysql_secure_installation
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user.  If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+Set root password? [Y/n] y
+New password:
+Re-enter new password:
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+#
+
+4.mariadbの設定
+# vim /etc/my.cnf.d/server.cnf
+[mysqld]
+character-set-server = utf8
+collation-server     = utf8_bin
+skip-character-set-client-handshake
+innodb_file_per_table
+
+# systemctl restart mariadb
+
+5.データベース作成
+# mysql -uroot -p
+MariaDB [(none)]> create database zabbix character set utf8 collate utf8_bin;
+MariaDB [(none)]> grant all privileges on zabbix.* to zabbix@localhost identified by 'P@ssw0rd';
+MariaDB [(none)]> exit
+#
+
+# zcat /usr/share/doc/zabbix-server-mysql-5.0.0/create.sql.gz | mysql -uzabbix zabbix -p
+
+DB作成時のパスワード
+# vim /etc/zabbix/zabbix_server.conf
+DBPassword=P@ssw0rd
+
+6.webインターフェース
+# vim /etc/yum.repos.d/zabbix.repo
+[zabbix-frontend]
+name=Zabbix Official Repository frontend - $basearch
+baseurl=http://repo.zabbix.com/zabbix/5.0/rhel/7/$basearch/frontend
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-ZABBIX-A14FE591
+
+enabled=0を1に変更する。
+
+# yum -y install centos-release-scl
+
+# yum -y install zabbix-web zabbix-web-deps-scl zabbix-web-mysql-scl zabbix-apache-conf-scl zabbix-web-japanese
+
+PHPのタイムゾーン変更
+# vim /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf
+# vi /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf
+
+7.起動
+# systemctl start zabbix-agent zabbix-server rh-php72-php-fpm httpd
+# systemctl enable zabbix-agent zabbix-server rh-php72-php-fpm httpd
+
+8.FW
+# firewall-cmd --add-port=10051/tcp --zone=public --permanent
+# firewall-cmd --add-service=http --zone=public --permanent
+# firewall-cmd --add-port=10050/tcp --zone=public --permanent
+# firewall-cmd --reload
+
+9.ログイン
+http://172.18.100.81/zabbix
+
