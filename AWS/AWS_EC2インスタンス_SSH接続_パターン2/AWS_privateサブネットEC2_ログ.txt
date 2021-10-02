@@ -1,0 +1,15 @@
+Last login: Sat Oct  2 06:56:49 2021 from 172.16.1.36
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-16-1-241 ~]$
+[ec2-user@ip-172-16-1-241 ~]$
+[ec2-user@ip-172-16-1-241 ~]$ ll
+total 4
+-rw-r--r-- 1 ec2-user ec2-user 1462 Oct  2 07:12 id_rsa.ppk
+[ec2-user@ip-172-16-1-241 ~]$ ls
+id_rsa.ppk
+[ec2-user@ip-172-16-1-241 ~]$

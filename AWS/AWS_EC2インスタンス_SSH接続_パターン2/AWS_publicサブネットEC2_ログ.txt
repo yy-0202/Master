@@ -1,0 +1,126 @@
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-172-16-1-36 ~]$ ping  172.16.1.241
+PING 172.16.1.241 (172.16.1.241) 56(84) bytes of data.
+64 bytes from 172.16.1.241: icmp_seq=1 ttl=255 time=0.384 ms
+64 bytes from 172.16.1.241: icmp_seq=2 ttl=255 time=0.467 ms
+64 bytes from 172.16.1.241: icmp_seq=3 ttl=255 time=0.434 ms
+64 bytes from 172.16.1.241: icmp_seq=4 ttl=255 time=0.423 ms
+64 bytes from 172.16.1.241: icmp_seq=5 ttl=255 time=1.01 ms
+64 bytes from 172.16.1.241: icmp_seq=6 ttl=255 time=0.549 ms
+^C
+--- 172.16.1.241 ping statistics ---
+6 packets transmitted, 6 received, 0% packet loss, time 5100ms
+rtt min/avg/max/mdev = 0.384/0.546/1.019/0.217 ms
+[ec2-user@ip-172-16-1-36 ~]$ ssh 172.16.1.241
+The authenticity of host '172.16.1.241 (172.16.1.241)' can't be established.
+ECDSA key fingerprint is SHA256:DYDt18+QiQT1F1BAK5cwb/Nd4b9975uTAyJqRoV9BOk.
+ECDSA key fingerprint is MD5:1f:b7:63:cd:c9:60:31:fc:89:e1:62:a6:d1:97:df:93.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '172.16.1.241' (ECDSA) to the list of known hosts.
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.16.1.36  netmask 255.255.255.128  broadcast 172.16.1.127
+        inet6 fe80::4a4:60ff:fe43:f615  prefixlen 64  scopeid 0x20<link>
+        ether 06:a4:60:43:f6:15  txqueuelen 1000  (Ethernet)
+        RX packets 1472  bytes 140403 (137.1 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1700  bytes 168945 (164.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 24  bytes 1944 (1.8 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 24  bytes 1944 (1.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[ec2-user@ip-172-16-1-36 ~]$ ping 172.16.1.241
+PING 172.16.1.241 (172.16.1.241) 56(84) bytes of data.
+64 bytes from 172.16.1.241: icmp_seq=1 ttl=255 time=0.399 ms
+64 bytes from 172.16.1.241: icmp_seq=2 ttl=255 time=0.436 ms
+64 bytes from 172.16.1.241: icmp_seq=3 ttl=255 time=0.410 ms
+^C
+--- 172.16.1.241 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2038ms
+rtt min/avg/max/mdev = 0.399/0.415/0.436/0.015 ms
+[ec2-user@ip-172-16-1-36 ~]$ ll
+total 0
+[ec2-user@ip-172-16-1-36 ~]$ ls
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$ ls
+[ec2-user@ip-172-16-1-36 ~]$ ll
+total 0
+[ec2-user@ip-172-16-1-36 ~]$ ping 172.16.1.241
+PING 172.16.1.241 (172.16.1.241) 56(84) bytes of data.
+64 bytes from 172.16.1.241: icmp_seq=1 ttl=255 time=0.437 ms
+64 bytes from 172.16.1.241: icmp_seq=2 ttl=255 time=0.427 ms
+64 bytes from 172.16.1.241: icmp_seq=3 ttl=255 time=0.426 ms
+64 bytes from 172.16.1.241: icmp_seq=4 ttl=255 time=0.387 ms
+64 bytes from 172.16.1.241: icmp_seq=5 ttl=255 time=0.402 ms
+^C
+--- 172.16.1.241 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4086ms
+rtt min/avg/max/mdev = 0.387/0.415/0.437/0.031 ms
+[ec2-user@ip-172-16-1-36 ~]$ ssh 172.16.1.241
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+[ec2-user@ip-172-16-1-36 ~]$ ssh 172.16.1.241
+Permission denied (publickey,gssapi-keyex,gssapi-with-mic).
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$
+[ec2-user@ip-172-16-1-36 ~]$ ll ~/.ssh/
+total 8
+-rw------- 1 ec2-user ec2-user 396 Oct  2 05:26 authorized_keys
+-rw-r--r-- 1 ec2-user ec2-user 174 Oct  2 06:11 known_hosts
+[ec2-user@ip-172-16-1-36 ~]$ cd ~/.ssh
+[ec2-user@ip-172-16-1-36 .ssh]$ ll
+total 8
+-rw------- 1 ec2-user ec2-user 396 Oct  2 05:26 authorized_keys
+-rw-r--r-- 1 ec2-user ec2-user 174 Oct  2 06:11 known_hosts
+[ec2-user@ip-172-16-1-36 .ssh]$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 172.16.1.36  netmask 255.255.255.128  broadcast 172.16.1.127
+        inet6 fe80::4a4:60ff:fe43:f615  prefixlen 64  scopeid 0x20<link>
+        ether 06:a4:60:43:f6:15  txqueuelen 1000  (Ethernet)
+        RX packets 2318  bytes 199962 (195.2 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2463  bytes 241907 (236.2 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 24  bytes 1944 (1.8 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 24  bytes 1944 (1.8 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[ec2-user@ip-172-16-1-36 .ssh]$ ll
+total 8
+-rw------- 1 ec2-user ec2-user 396 Oct  2 05:26 authorized_keys
+-rw-r--r-- 1 ec2-user ec2-user 174 Oct  2 06:11 known_hosts
+[ec2-user@ip-172-16-1-36 .ssh]$ ls
+authorized_keys  known_hosts
+[ec2-user@ip-172-16-1-36 .ssh]$ ping 172.16.1.241
+PING 172.16.1.241 (172.16.1.241) 56(84) bytes of data.
+64 bytes from 172.16.1.241: icmp_seq=1 ttl=255 time=0.468 ms
+64 bytes from 172.16.1.241: icmp_seq=2 ttl=255 time=0.424 ms
+64 bytes from 172.16.1.241: icmp_seq=3 ttl=255 time=0.463 ms
+^C
+--- 172.16.1.241 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2036ms
+rtt min/avg/max/mdev = 0.424/0.451/0.468/0.031 ms
+[ec2-user@ip-172-16-1-36 .ssh]$
