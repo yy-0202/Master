@@ -20,7 +20,7 @@ Attachement:my-vpc-01
 5.Edit
 ROUTETABLE
 choose my-vpc-01
-choose 「Routs」on the bottom of the page
+choose 「Routes」on the bottom of the page
 choose 「edit routes」
 Destination:0.0.0.0/0
 Target:my-igw-01
