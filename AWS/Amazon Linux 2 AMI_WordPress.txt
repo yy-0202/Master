@@ -1,0 +1,1502 @@
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+11 package(s) needed for security, out of 35 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum -y update
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package curl.x86_64 0:7.76.1-4.amzn2.0.1 will be updated
+---> Package curl.x86_64 0:7.76.1-7.amzn2.0.2 will be an update
+---> Package device-mapper.x86_64 7:1.02.146-4.amzn2.0.2 will be updated
+---> Package device-mapper.x86_64 7:1.02.170-6.amzn2.5 will be an update
+---> Package device-mapper-event.x86_64 7:1.02.146-4.amzn2.0.2 will be updated
+---> Package device-mapper-event.x86_64 7:1.02.170-6.amzn2.5 will be an update
+---> Package device-mapper-event-libs.x86_64 7:1.02.146-4.amzn2.0.2 will be updated
+---> Package device-mapper-event-libs.x86_64 7:1.02.170-6.amzn2.5 will be an update
+---> Package device-mapper-libs.x86_64 7:1.02.146-4.amzn2.0.2 will be updated
+---> Package device-mapper-libs.x86_64 7:1.02.170-6.amzn2.5 will be an update
+---> Package glibc.x86_64 0:2.26-48.amzn2 will be updated
+---> Package glibc.x86_64 0:2.26-54.amzn2 will be an update
+---> Package glibc-all-langpacks.x86_64 0:2.26-48.amzn2 will be updated
+---> Package glibc-all-langpacks.x86_64 0:2.26-54.amzn2 will be an update
+---> Package glibc-common.x86_64 0:2.26-48.amzn2 will be updated
+---> Package glibc-common.x86_64 0:2.26-54.amzn2 will be an update
+---> Package glibc-locale-source.x86_64 0:2.26-48.amzn2 will be updated
+---> Package glibc-locale-source.x86_64 0:2.26-54.amzn2 will be an update
+---> Package glibc-minimal-langpack.x86_64 0:2.26-48.amzn2 will be updated
+---> Package glibc-minimal-langpack.x86_64 0:2.26-54.amzn2 will be an update
+---> Package grub2.x86_64 1:2.06-2.amzn2.0.3 will be obsoleted
+---> Package grub2.x86_64 1:2.06-2.amzn2.0.6 will be obsoleting
+---> Package grub2-common.noarch 1:2.06-2.amzn2.0.3 will be updated
+---> Package grub2-common.noarch 1:2.06-2.amzn2.0.6 will be an update
+---> Package grub2-efi-x64-ec2.x86_64 1:2.06-2.amzn2.0.3 will be updated
+---> Package grub2-efi-x64-ec2.x86_64 1:2.06-2.amzn2.0.6 will be an update
+---> Package grub2-pc.x86_64 1:2.06-2.amzn2.0.3 will be updated
+---> Package grub2-pc.x86_64 1:2.06-2.amzn2.0.6 will be obsoleting
+---> Package grub2-pc-modules.noarch 1:2.06-2.amzn2.0.3 will be updated
+---> Package grub2-pc-modules.noarch 1:2.06-2.amzn2.0.6 will be an update
+---> Package grub2-tools.x86_64 1:2.06-2.amzn2.0.3 will be obsoleted
+---> Package grub2-tools.x86_64 1:2.06-2.amzn2.0.6 will be obsoleting
+---> Package grub2-tools-efi.x86_64 1:2.06-2.amzn2.0.6 will be obsoleting
+---> Package grub2-tools-extra.x86_64 1:2.06-2.amzn2.0.6 will be obsoleting
+---> Package grub2-tools-minimal.x86_64 1:2.06-2.amzn2.0.3 will be updated
+---> Package grub2-tools-minimal.x86_64 1:2.06-2.amzn2.0.6 will be obsoleting
+---> Package kernel.x86_64 0:4.14.246-187.474.amzn2 will be installed
+---> Package kernel-tools.x86_64 0:4.14.243-185.433.amzn2 will be updated
+---> Package kernel-tools.x86_64 0:4.14.246-187.474.amzn2 will be an update
+---> Package libblkid.x86_64 0:2.30.2-2.amzn2.0.4 will be updated
+---> Package libblkid.x86_64 0:2.30.2-2.amzn2.0.5 will be an update
+---> Package libcrypt.x86_64 0:2.26-48.amzn2 will be updated
+---> Package libcrypt.x86_64 0:2.26-54.amzn2 will be an update
+---> Package libcurl.x86_64 0:7.76.1-4.amzn2.0.1 will be updated
+---> Package libcurl.x86_64 0:7.76.1-7.amzn2.0.2 will be an update
+---> Package libfdisk.x86_64 0:2.30.2-2.amzn2.0.4 will be updated
+---> Package libfdisk.x86_64 0:2.30.2-2.amzn2.0.5 will be an update
+---> Package libmount.x86_64 0:2.30.2-2.amzn2.0.4 will be updated
+---> Package libmount.x86_64 0:2.30.2-2.amzn2.0.5 will be an update
+---> Package libsmartcols.x86_64 0:2.30.2-2.amzn2.0.4 will be updated
+---> Package libsmartcols.x86_64 0:2.30.2-2.amzn2.0.5 will be an update
+---> Package libuuid.x86_64 0:2.30.2-2.amzn2.0.4 will be updated
+---> Package libuuid.x86_64 0:2.30.2-2.amzn2.0.5 will be an update
+---> Package lvm2.x86_64 7:2.02.177-4.amzn2.0.2 will be updated
+---> Package lvm2.x86_64 7:2.02.187-6.amzn2.5 will be an update
+---> Package lvm2-libs.x86_64 7:2.02.177-4.amzn2.0.2 will be updated
+---> Package lvm2-libs.x86_64 7:2.02.187-6.amzn2.5 will be an update
+---> Package openldap.x86_64 0:2.4.44-23.amzn2.0.1 will be updated
+---> Package openldap.x86_64 0:2.4.44-23.amzn2.0.2 will be an update
+---> Package systemd.x86_64 0:219-78.amzn2.0.14 will be updated
+---> Package systemd.x86_64 0:219-78.amzn2.0.15 will be an update
+---> Package systemd-libs.x86_64 0:219-78.amzn2.0.14 will be updated
+---> Package systemd-libs.x86_64 0:219-78.amzn2.0.15 will be an update
+---> Package systemd-sysv.x86_64 0:219-78.amzn2.0.14 will be updated
+---> Package systemd-sysv.x86_64 0:219-78.amzn2.0.15 will be an update
+---> Package util-linux.x86_64 0:2.30.2-2.amzn2.0.4 will be updated
+---> Package util-linux.x86_64 0:2.30.2-2.amzn2.0.5 will be an update
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                   Arch    Version                    Repository   Size
+================================================================================
+Installing:
+ grub2                     x86_64  1:2.06-2.amzn2.0.6         amzn2-core   45 k
+     replacing  grub2.x86_64 1:2.06-2.amzn2.0.3
+ grub2-pc                  x86_64  1:2.06-2.amzn2.0.6         amzn2-core   44 k
+     replacing  grub2.x86_64 1:2.06-2.amzn2.0.3
+ grub2-tools               x86_64  1:2.06-2.amzn2.0.6         amzn2-core  2.0 M
+     replacing  grub2-tools.x86_64 1:2.06-2.amzn2.0.3
+ grub2-tools-efi           x86_64  1:2.06-2.amzn2.0.6         amzn2-core  560 k
+     replacing  grub2-tools.x86_64 1:2.06-2.amzn2.0.3
+ grub2-tools-extra         x86_64  1:2.06-2.amzn2.0.6         amzn2-core  1.0 M
+     replacing  grub2-tools.x86_64 1:2.06-2.amzn2.0.3
+ grub2-tools-minimal       x86_64  1:2.06-2.amzn2.0.6         amzn2-core  623 k
+     replacing  grub2-tools.x86_64 1:2.06-2.amzn2.0.3
+ kernel                    x86_64  4.14.246-187.474.amzn2     amzn2-core   21 M
+Updating:
+ curl                      x86_64  7.76.1-7.amzn2.0.2         amzn2-core  345 k
+ device-mapper             x86_64  7:1.02.170-6.amzn2.5       amzn2-core  297 k
+ device-mapper-event       x86_64  7:1.02.170-6.amzn2.5       amzn2-core  192 k
+ device-mapper-event-libs  x86_64  7:1.02.170-6.amzn2.5       amzn2-core  192 k
+ device-mapper-libs        x86_64  7:1.02.170-6.amzn2.5       amzn2-core  326 k
+ glibc                     x86_64  2.26-54.amzn2              amzn2-core  3.3 M
+ glibc-all-langpacks       x86_64  2.26-54.amzn2              amzn2-core  7.0 M
+ glibc-common              x86_64  2.26-54.amzn2              amzn2-core  772 k
+ glibc-locale-source       x86_64  2.26-54.amzn2              amzn2-core  3.2 M
+ glibc-minimal-langpack    x86_64  2.26-54.amzn2              amzn2-core   31 k
+ grub2-common              noarch  1:2.06-2.amzn2.0.6         amzn2-core  1.7 M
+ grub2-efi-x64-ec2         x86_64  1:2.06-2.amzn2.0.6         amzn2-core  281 k
+ grub2-pc-modules          noarch  1:2.06-2.amzn2.0.6         amzn2-core  938 k
+ kernel-tools              x86_64  4.14.246-187.474.amzn2     amzn2-core  152 k
+ libblkid                  x86_64  2.30.2-2.amzn2.0.5         amzn2-core  190 k
+ libcrypt                  x86_64  2.26-54.amzn2              amzn2-core   51 k
+ libcurl                   x86_64  7.76.1-7.amzn2.0.2         amzn2-core  314 k
+ libfdisk                  x86_64  2.30.2-2.amzn2.0.5         amzn2-core  237 k
+ libmount                  x86_64  2.30.2-2.amzn2.0.5         amzn2-core  212 k
+ libsmartcols              x86_64  2.30.2-2.amzn2.0.5         amzn2-core  155 k
+ libuuid                   x86_64  2.30.2-2.amzn2.0.5         amzn2-core   79 k
+ lvm2                      x86_64  7:2.02.187-6.amzn2.5       amzn2-core  1.3 M
+ lvm2-libs                 x86_64  7:2.02.187-6.amzn2.5       amzn2-core  1.1 M
+ openldap                  x86_64  2.4.44-23.amzn2.0.2        amzn2-core  350 k
+ systemd                   x86_64  219-78.amzn2.0.15          amzn2-core  5.0 M
+ systemd-libs              x86_64  219-78.amzn2.0.15          amzn2-core  408 k
+ systemd-sysv              x86_64  219-78.amzn2.0.15          amzn2-core   97 k
+ util-linux                x86_64  2.30.2-2.amzn2.0.5         amzn2-core  2.3 M
+
+Transaction Summary
+================================================================================
+Install   7 Packages
+Upgrade  28 Packages
+
+Total download size: 56 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+(1/35): device-mapper-1.02.170-6.amzn2.5.x86_64.rpm        | 297 kB   00:00
+(2/35): curl-7.76.1-7.amzn2.0.2.x86_64.rpm                 | 345 kB   00:00
+(3/35): device-mapper-event-1.02.170-6.amzn2.5.x86_64.rpm  | 192 kB   00:00
+(4/35): device-mapper-event-libs-1.02.170-6.amzn2.5.x86_64 | 192 kB   00:00
+(5/35): device-mapper-libs-1.02.170-6.amzn2.5.x86_64.rpm   | 326 kB   00:00
+(6/35): glibc-2.26-54.amzn2.x86_64.rpm                     | 3.3 MB   00:00
+(7/35): glibc-common-2.26-54.amzn2.x86_64.rpm              | 772 kB   00:00
+(8/35): glibc-locale-source-2.26-54.amzn2.x86_64.rpm       | 3.2 MB   00:00
+(9/35): glibc-all-langpacks-2.26-54.amzn2.x86_64.rpm       | 7.0 MB   00:00
+(10/35): glibc-minimal-langpack-2.26-54.amzn2.x86_64.rpm   |  31 kB   00:00
+(11/35): grub2-2.06-2.amzn2.0.6.x86_64.rpm                 |  45 kB   00:00
+(12/35): grub2-common-2.06-2.amzn2.0.6.noarch.rpm          | 1.7 MB   00:00
+(13/35): grub2-efi-x64-ec2-2.06-2.amzn2.0.6.x86_64.rpm     | 281 kB   00:00
+(14/35): grub2-pc-2.06-2.amzn2.0.6.x86_64.rpm              |  44 kB   00:00
+(15/35): grub2-pc-modules-2.06-2.amzn2.0.6.noarch.rpm      | 938 kB   00:00
+(16/35): grub2-tools-2.06-2.amzn2.0.6.x86_64.rpm           | 2.0 MB   00:00
+(17/35): grub2-tools-efi-2.06-2.amzn2.0.6.x86_64.rpm       | 560 kB   00:00
+(18/35): grub2-tools-extra-2.06-2.amzn2.0.6.x86_64.rpm     | 1.0 MB   00:00
+(19/35): grub2-tools-minimal-2.06-2.amzn2.0.6.x86_64.rpm   | 623 kB   00:00
+(20/35): kernel-tools-4.14.246-187.474.amzn2.x86_64.rpm    | 152 kB   00:00
+(21/35): libblkid-2.30.2-2.amzn2.0.5.x86_64.rpm            | 190 kB   00:00
+(22/35): libcrypt-2.26-54.amzn2.x86_64.rpm                 |  51 kB   00:00
+(23/35): libcurl-7.76.1-7.amzn2.0.2.x86_64.rpm             | 314 kB   00:00
+(24/35): libfdisk-2.30.2-2.amzn2.0.5.x86_64.rpm            | 237 kB   00:00
+(25/35): libmount-2.30.2-2.amzn2.0.5.x86_64.rpm            | 212 kB   00:00
+(26/35): libsmartcols-2.30.2-2.amzn2.0.5.x86_64.rpm        | 155 kB   00:00
+(27/35): libuuid-2.30.2-2.amzn2.0.5.x86_64.rpm             |  79 kB   00:00
+(28/35): lvm2-2.02.187-6.amzn2.5.x86_64.rpm                | 1.3 MB   00:00
+(29/35): kernel-4.14.246-187.474.amzn2.x86_64.rpm          |  21 MB   00:00
+(30/35): lvm2-libs-2.02.187-6.amzn2.5.x86_64.rpm           | 1.1 MB   00:00
+(31/35): openldap-2.4.44-23.amzn2.0.2.x86_64.rpm           | 350 kB   00:00
+(32/35): systemd-libs-219-78.amzn2.0.15.x86_64.rpm         | 408 kB   00:00
+(33/35): systemd-sysv-219-78.amzn2.0.15.x86_64.rpm         |  97 kB   00:00
+(34/35): util-linux-2.30.2-2.amzn2.0.5.x86_64.rpm          | 2.3 MB   00:00
+(35/35): systemd-219-78.amzn2.0.15.x86_64.rpm              | 5.0 MB   00:00
+--------------------------------------------------------------------------------
+Total                                               51 MB/s |  56 MB  00:01
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : 1:grub2-common-2.06-2.amzn2.0.6.noarch                      1/67
+  Updating   : glibc-minimal-langpack-2.26-54.amzn2.x86_64                 2/67
+  Updating   : glibc-2.26-54.amzn2.x86_64                                  3/67
+  Updating   : glibc-common-2.26-54.amzn2.x86_64                           4/67
+  Updating   : systemd-libs-219-78.amzn2.0.15.x86_64                       5/67
+  Updating   : libuuid-2.30.2-2.amzn2.0.5.x86_64                           6/67
+  Updating   : libblkid-2.30.2-2.amzn2.0.5.x86_64                          7/67
+  Updating   : libmount-2.30.2-2.amzn2.0.5.x86_64                          8/67
+  Updating   : libcrypt-2.26-54.amzn2.x86_64                               9/67
+  Updating   : openldap-2.4.44-23.amzn2.0.2.x86_64                        10/67
+  Updating   : libcurl-7.76.1-7.amzn2.0.2.x86_64                          11/67
+  Updating   : systemd-219-78.amzn2.0.15.x86_64                           12/67
+  Updating   : libfdisk-2.30.2-2.amzn2.0.5.x86_64                         13/67
+  Updating   : libsmartcols-2.30.2-2.amzn2.0.5.x86_64                     14/67
+  Updating   : util-linux-2.30.2-2.amzn2.0.5.x86_64                       15/67
+  Updating   : 7:device-mapper-libs-1.02.170-6.amzn2.5.x86_64             16/67
+  Updating   : 7:device-mapper-1.02.170-6.amzn2.5.x86_64                  17/67
+  Updating   : 7:device-mapper-event-libs-1.02.170-6.amzn2.5.x86_64       18/67
+  Installing : 1:grub2-tools-minimal-2.06-2.amzn2.0.6.x86_64              19/67
+  Installing : 1:grub2-tools-2.06-2.amzn2.0.6.x86_64                      20/67
+  Updating   : 7:device-mapper-event-1.02.170-6.amzn2.5.x86_64            21/67
+  Updating   : 7:lvm2-libs-2.02.187-6.amzn2.5.x86_64                      22/67
+  Updating   : 1:grub2-pc-modules-2.06-2.amzn2.0.6.noarch                 23/67
+  Installing : 1:grub2-pc-2.06-2.amzn2.0.6.x86_64                         24/67
+  Installing : 1:grub2-2.06-2.amzn2.0.6.x86_64                            25/67
+  Updating   : 7:lvm2-2.02.187-6.amzn2.5.x86_64                           26/67
+  Updating   : 1:grub2-efi-x64-ec2-2.06-2.amzn2.0.6.x86_64                27/67
+  Installing : 1:grub2-tools-extra-2.06-2.amzn2.0.6.x86_64                28/67
+  Installing : 1:grub2-tools-efi-2.06-2.amzn2.0.6.x86_64                  29/67
+  Updating   : systemd-sysv-219-78.amzn2.0.15.x86_64                      30/67
+  Updating   : curl-7.76.1-7.amzn2.0.2.x86_64                             31/67
+  Updating   : glibc-locale-source-2.26-54.amzn2.x86_64                   32/67
+  Updating   : glibc-all-langpacks-2.26-54.amzn2.x86_64                   33/67
+  Updating   : kernel-tools-4.14.246-187.474.amzn2.x86_64                 34/67
+  Installing : kernel-4.14.246-187.474.amzn2.x86_64                       35/67
+  Cleanup    : 1:grub2-efi-x64-ec2-2.06-2.amzn2.0.3.x86_64                36/67
+  Cleanup    : glibc-all-langpacks-2.26-48.amzn2.x86_64                   37/67
+  Cleanup    : glibc-locale-source-2.26-48.amzn2.x86_64                   38/67
+  Cleanup    : 1:grub2-2.06-2.amzn2.0.3.x86_64                            39/67
+  Cleanup    : 1:grub2-pc-2.06-2.amzn2.0.3.x86_64                         40/67
+  Cleanup    : 1:grub2-pc-modules-2.06-2.amzn2.0.3.noarch                 41/67
+  Cleanup    : systemd-sysv-219-78.amzn2.0.14.x86_64                      42/67
+  Cleanup    : 7:lvm2-2.02.177-4.amzn2.0.2.x86_64                         43/67
+  Cleanup    : 7:lvm2-libs-2.02.177-4.amzn2.0.2.x86_64                    44/67
+  Cleanup    : 7:device-mapper-event-1.02.146-4.amzn2.0.2.x86_64          45/67
+  Cleanup    : 1:grub2-tools-minimal-2.06-2.amzn2.0.3.x86_64              46/67
+  Cleanup    : 1:grub2-tools-2.06-2.amzn2.0.3.x86_64                      47/67
+  Cleanup    : curl-7.76.1-4.amzn2.0.1.x86_64                             48/67
+  Cleanup    : 7:device-mapper-event-libs-1.02.146-4.amzn2.0.2.x86_64     49/67
+  Cleanup    : 7:device-mapper-1.02.146-4.amzn2.0.2.x86_64                50/67
+  Cleanup    : 7:device-mapper-libs-1.02.146-4.amzn2.0.2.x86_64           51/67
+  Cleanup    : util-linux-2.30.2-2.amzn2.0.4.x86_64                       52/67
+  Cleanup    : systemd-219-78.amzn2.0.14.x86_64                           53/67
+  Cleanup    : libmount-2.30.2-2.amzn2.0.4.x86_64                         54/67
+  Cleanup    : libfdisk-2.30.2-2.amzn2.0.4.x86_64                         55/67
+  Cleanup    : libblkid-2.30.2-2.amzn2.0.4.x86_64                         56/67
+  Cleanup    : libcurl-7.76.1-4.amzn2.0.1.x86_64                          57/67
+  Cleanup    : openldap-2.4.44-23.amzn2.0.1.x86_64                        58/67
+  Cleanup    : libuuid-2.30.2-2.amzn2.0.4.x86_64                          59/67
+  Cleanup    : libcrypt-2.26-48.amzn2.x86_64                              60/67
+  Cleanup    : systemd-libs-219-78.amzn2.0.14.x86_64                      61/67
+  Cleanup    : libsmartcols-2.30.2-2.amzn2.0.4.x86_64                     62/67
+  Cleanup    : kernel-tools-4.14.243-185.433.amzn2.x86_64                 63/67
+  Cleanup    : 1:grub2-common-2.06-2.amzn2.0.3.noarch                     64/67
+  Cleanup    : glibc-minimal-langpack-2.26-48.amzn2.x86_64                65/67
+  Cleanup    : glibc-2.26-48.amzn2.x86_64                                 66/67
+  Cleanup    : glibc-common-2.26-48.amzn2.x86_64                          67/67
+  Verifying  : glibc-common-2.26-54.amzn2.x86_64                           1/67
+  Verifying  : systemd-sysv-219-78.amzn2.0.15.x86_64                       2/67
+  Verifying  : libcrypt-2.26-54.amzn2.x86_64                               3/67
+  Verifying  : 7:device-mapper-event-libs-1.02.170-6.amzn2.5.x86_64        4/67
+  Verifying  : 1:grub2-tools-efi-2.06-2.amzn2.0.6.x86_64                   5/67
+  Verifying  : libmount-2.30.2-2.amzn2.0.5.x86_64                          6/67
+  Verifying  : systemd-219-78.amzn2.0.15.x86_64                            7/67
+  Verifying  : 1:grub2-common-2.06-2.amzn2.0.6.noarch                      8/67
+  Verifying  : systemd-libs-219-78.amzn2.0.15.x86_64                       9/67
+  Verifying  : 7:lvm2-2.02.187-6.amzn2.5.x86_64                           10/67
+  Verifying  : glibc-minimal-langpack-2.26-54.amzn2.x86_64                11/67
+  Verifying  : 1:grub2-2.06-2.amzn2.0.6.x86_64                            12/67
+  Verifying  : glibc-locale-source-2.26-54.amzn2.x86_64                   13/67
+  Verifying  : openldap-2.4.44-23.amzn2.0.2.x86_64                        14/67
+  Verifying  : 7:device-mapper-libs-1.02.170-6.amzn2.5.x86_64             15/67
+  Verifying  : 1:grub2-tools-extra-2.06-2.amzn2.0.6.x86_64                16/67
+  Verifying  : 1:grub2-tools-minimal-2.06-2.amzn2.0.6.x86_64              17/67
+  Verifying  : kernel-tools-4.14.246-187.474.amzn2.x86_64                 18/67
+  Verifying  : libcurl-7.76.1-7.amzn2.0.2.x86_64                          19/67
+  Verifying  : kernel-4.14.246-187.474.amzn2.x86_64                       20/67
+  Verifying  : 1:grub2-tools-2.06-2.amzn2.0.6.x86_64                      21/67
+  Verifying  : 1:grub2-efi-x64-ec2-2.06-2.amzn2.0.6.x86_64                22/67
+  Verifying  : 7:device-mapper-1.02.170-6.amzn2.5.x86_64                  23/67
+  Verifying  : util-linux-2.30.2-2.amzn2.0.5.x86_64                       24/67
+  Verifying  : curl-7.76.1-7.amzn2.0.2.x86_64                             25/67
+  Verifying  : 7:device-mapper-event-1.02.170-6.amzn2.5.x86_64            26/67
+  Verifying  : 7:lvm2-libs-2.02.187-6.amzn2.5.x86_64                      27/67
+  Verifying  : glibc-all-langpacks-2.26-54.amzn2.x86_64                   28/67
+  Verifying  : libfdisk-2.30.2-2.amzn2.0.5.x86_64                         29/67
+  Verifying  : libblkid-2.30.2-2.amzn2.0.5.x86_64                         30/67
+  Verifying  : 1:grub2-pc-modules-2.06-2.amzn2.0.6.noarch                 31/67
+  Verifying  : 1:grub2-pc-2.06-2.amzn2.0.6.x86_64                         32/67
+  Verifying  : libuuid-2.30.2-2.amzn2.0.5.x86_64                          33/67
+  Verifying  : libsmartcols-2.30.2-2.amzn2.0.5.x86_64                     34/67
+  Verifying  : glibc-2.26-54.amzn2.x86_64                                 35/67
+  Verifying  : glibc-common-2.26-48.amzn2.x86_64                          36/67
+  Verifying  : 1:grub2-pc-modules-2.06-2.amzn2.0.3.noarch                 37/67
+  Verifying  : 7:device-mapper-libs-1.02.146-4.amzn2.0.2.x86_64           38/67
+  Verifying  : curl-7.76.1-4.amzn2.0.1.x86_64                             39/67
+  Verifying  : openldap-2.4.44-23.amzn2.0.1.x86_64                        40/67
+  Verifying  : glibc-all-langpacks-2.26-48.amzn2.x86_64                   41/67
+  Verifying  : glibc-locale-source-2.26-48.amzn2.x86_64                   42/67
+  Verifying  : libfdisk-2.30.2-2.amzn2.0.4.x86_64                         43/67
+  Verifying  : libcrypt-2.26-48.amzn2.x86_64                              44/67
+  Verifying  : 1:grub2-tools-minimal-2.06-2.amzn2.0.3.x86_64              45/67
+  Verifying  : libblkid-2.30.2-2.amzn2.0.4.x86_64                         46/67
+  Verifying  : 1:grub2-common-2.06-2.amzn2.0.3.noarch                     47/67
+  Verifying  : glibc-2.26-48.amzn2.x86_64                                 48/67
+  Verifying  : 1:grub2-efi-x64-ec2-2.06-2.amzn2.0.3.x86_64                49/67
+  Verifying  : libsmartcols-2.30.2-2.amzn2.0.4.x86_64                     50/67
+  Verifying  : 1:grub2-tools-2.06-2.amzn2.0.3.x86_64                      51/67
+  Verifying  : libcurl-7.76.1-4.amzn2.0.1.x86_64                          52/67
+  Verifying  : systemd-sysv-219-78.amzn2.0.14.x86_64                      53/67
+  Verifying  : glibc-minimal-langpack-2.26-48.amzn2.x86_64                54/67
+  Verifying  : util-linux-2.30.2-2.amzn2.0.4.x86_64                       55/67
+  Verifying  : 1:grub2-2.06-2.amzn2.0.3.x86_64                            56/67
+  Verifying  : 1:grub2-pc-2.06-2.amzn2.0.3.x86_64                         57/67
+  Verifying  : 7:lvm2-2.02.177-4.amzn2.0.2.x86_64                         58/67
+  Verifying  : systemd-219-78.amzn2.0.14.x86_64                           59/67
+  Verifying  : systemd-libs-219-78.amzn2.0.14.x86_64                      60/67
+  Verifying  : 7:device-mapper-1.02.146-4.amzn2.0.2.x86_64                61/67
+  Verifying  : 7:lvm2-libs-2.02.177-4.amzn2.0.2.x86_64                    62/67
+  Verifying  : libmount-2.30.2-2.amzn2.0.4.x86_64                         63/67
+  Verifying  : libuuid-2.30.2-2.amzn2.0.4.x86_64                          64/67
+  Verifying  : kernel-tools-4.14.243-185.433.amzn2.x86_64                 65/67
+  Verifying  : 7:device-mapper-event-libs-1.02.146-4.amzn2.0.2.x86_64     66/67
+  Verifying  : 7:device-mapper-event-1.02.146-4.amzn2.0.2.x86_64          67/67
+
+Installed:
+  grub2.x86_64 1:2.06-2.amzn2.0.6
+  grub2-pc.x86_64 1:2.06-2.amzn2.0.6
+  grub2-tools.x86_64 1:2.06-2.amzn2.0.6
+  grub2-tools-efi.x86_64 1:2.06-2.amzn2.0.6
+  grub2-tools-extra.x86_64 1:2.06-2.amzn2.0.6
+  grub2-tools-minimal.x86_64 1:2.06-2.amzn2.0.6
+  kernel.x86_64 0:4.14.246-187.474.amzn2
+
+Updated:
+  curl.x86_64 0:7.76.1-7.amzn2.0.2
+  device-mapper.x86_64 7:1.02.170-6.amzn2.5
+  device-mapper-event.x86_64 7:1.02.170-6.amzn2.5
+  device-mapper-event-libs.x86_64 7:1.02.170-6.amzn2.5
+  device-mapper-libs.x86_64 7:1.02.170-6.amzn2.5
+  glibc.x86_64 0:2.26-54.amzn2
+  glibc-all-langpacks.x86_64 0:2.26-54.amzn2
+  glibc-common.x86_64 0:2.26-54.amzn2
+  glibc-locale-source.x86_64 0:2.26-54.amzn2
+  glibc-minimal-langpack.x86_64 0:2.26-54.amzn2
+  grub2-common.noarch 1:2.06-2.amzn2.0.6
+  grub2-efi-x64-ec2.x86_64 1:2.06-2.amzn2.0.6
+  grub2-pc-modules.noarch 1:2.06-2.amzn2.0.6
+  kernel-tools.x86_64 0:4.14.246-187.474.amzn2
+  libblkid.x86_64 0:2.30.2-2.amzn2.0.5
+  libcrypt.x86_64 0:2.26-54.amzn2
+  libcurl.x86_64 0:7.76.1-7.amzn2.0.2
+  libfdisk.x86_64 0:2.30.2-2.amzn2.0.5
+  libmount.x86_64 0:2.30.2-2.amzn2.0.5
+  libsmartcols.x86_64 0:2.30.2-2.amzn2.0.5
+  libuuid.x86_64 0:2.30.2-2.amzn2.0.5
+  lvm2.x86_64 7:2.02.187-6.amzn2.5
+  lvm2-libs.x86_64 7:2.02.187-6.amzn2.5
+  openldap.x86_64 0:2.4.44-23.amzn2.0.2
+  systemd.x86_64 0:219-78.amzn2.0.15
+  systemd-libs.x86_64 0:219-78.amzn2.0.15
+  systemd-sysv.x86_64 0:219-78.amzn2.0.15
+  util-linux.x86_64 0:2.30.2-2.amzn2.0.5
+
+Replaced:
+  grub2.x86_64 1:2.06-2.amzn2.0.3     grub2-tools.x86_64 1:2.06-2.amzn2.0.3
+
+Complete!
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum -y upgrade
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+No packages marked for update
+[ec2-user@ip-172-16-1-21 ~]$ amazon-linux-extras list |grep php
+ 15  php7.2                   available    \
+ 17  lamp-mariadb10.2-php7.2  available    \
+ 31  php7.3                   available    \
+ 42  php7.4                   available    [ =stable ]
+ 51  php8.0                   available    [ =stable ]
+[ec2-user@ip-172-16-1-21 ~]$ sudo amazon-linux-extras enable php8.0
+  0  ansible2                 available    \
+        [ =2.4.2  =2.4.6  =2.8  =stable ]
+  2  httpd_modules            available    [ =1.0  =stable ]
+  3  memcached1.5             available    \
+        [ =1.5.1  =1.5.16  =1.5.17 ]
+  5  postgresql9.6            available    \
+        [ =9.6.6  =9.6.8  =stable ]
+  6  postgresql10             available    [ =10  =stable ]
+  9  R3.4                     available    [ =3.4.3  =stable ]
+ 10  rust1                    available    \
+        [ =1.22.1  =1.26.0  =1.26.1  =1.27.2  =1.31.0  =1.38.0
+          =stable ]
+ 11  vim                      available    [ =8.0  =stable ]
+  _  php7.2                   available    \
+        [ =7.2.0  =7.2.4  =7.2.5  =7.2.8  =7.2.11  =7.2.13  =7.2.14
+          =7.2.16  =7.2.17  =7.2.19  =7.2.21  =7.2.22  =7.2.23
+          =7.2.24  =7.2.26  =stable ]
+  _  lamp-mariadb10.2-php7.2  available    \
+        [ =10.2.10_7.2.0  =10.2.10_7.2.4  =10.2.10_7.2.5
+          =10.2.10_7.2.8  =10.2.10_7.2.11  =10.2.10_7.2.13
+          =10.2.10_7.2.14  =10.2.10_7.2.16  =10.2.10_7.2.17
+          =10.2.10_7.2.19  =10.2.10_7.2.22  =10.2.10_7.2.23
+          =10.2.10_7.2.24  =stable ]
+ 18  libreoffice              available    \
+        [ =5.0.6.2_15  =5.3.6.1  =stable ]
+ 19  gimp                     available    [ =2.8.22 ]
+ 20  docker=latest            enabled      \
+        [ =17.12.1  =18.03.1  =18.06.1  =18.09.9  =stable ]
+ 21  mate-desktop1.x          available    \
+        [ =1.19.0  =1.20.0  =stable ]
+ 22  GraphicsMagick1.3        available    \
+        [ =1.3.29  =1.3.32  =1.3.34  =stable ]
+ 23  tomcat8.5                available    \
+        [ =8.5.31  =8.5.32  =8.5.38  =8.5.40  =8.5.42  =8.5.50
+          =stable ]
+ 24  epel                     available    [ =7.11  =stable ]
+ 25  testing                  available    [ =1.0  =stable ]
+ 26  ecs                      available    [ =stable ]
+ 27  corretto8                available    \
+        [ =1.8.0_192  =1.8.0_202  =1.8.0_212  =1.8.0_222  =1.8.0_232
+          =1.8.0_242  =stable ]
+ 28  firecracker              available    [ =0.11  =stable ]
+ 29  golang1.11               available    \
+        [ =1.11.3  =1.11.11  =1.11.13  =stable ]
+ 30  squid4                   available    [ =4  =stable ]
+  _  php7.3                   available    \
+        [ =7.3.2  =7.3.3  =7.3.4  =7.3.6  =7.3.8  =7.3.9  =7.3.10
+          =7.3.11  =7.3.13  =stable ]
+ 32  lustre2.10               available    \
+        [ =2.10.5  =2.10.8  =stable ]
+ 33  java-openjdk11           available    [ =11  =stable ]
+ 34  lynis                    available    [ =stable ]
+ 35  kernel-ng                available    [ =stable ]
+ 36  BCC                      available    [ =0.x  =stable ]
+ 37  mono                     available    [ =5.x  =stable ]
+ 38  nginx1                   available    [ =stable ]
+ 39  ruby2.6                  available    [ =2.6  =stable ]
+ 40  mock                     available    [ =stable ]
+ 41  postgresql11             available    [ =11  =stable ]
+  _  php7.4                   available    [ =stable ]
+ 43  livepatch                available    [ =stable ]
+ 44  python3.8                available    [ =stable ]
+ 45  haproxy2                 available    [ =stable ]
+ 46  collectd                 available    [ =stable ]
+ 47  aws-nitro-enclaves-cli   available    [ =stable ]
+ 48  R4                       available    [ =stable ]
+ 49  kernel-5.4               available    [ =stable ]
+ 50  selinux-ng               available    [ =stable ]
+ 51  php8.0=latest            enabled      [ =stable ]
+ 52  tomcat9                  available    [ =stable ]
+ 53  unbound1.13              available    [ =stable ]
+ 54  mariadb10.5              available    [ =stable ]
+ 55  kernel-5.10              available    [ =stable ]
+ 56  redis6                   available    [ =stable ]
+ 57  ruby3.0                  available    [ =stable ]
+ 58  postgresql12             available    [ =stable ]
+ 59  postgresql13             available    [ =stable ]
+ 60  mock2                    available    [ =stable ]
+ 61  dnsmasq2.85              available    [ =stable ]
+
+Now you can install:
+ # yum clean metadata
+ # yum install php-cli php-pdo php-fpm php-mysqlnd
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum clean metadata
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Cleaning repos: amzn2-core amzn2extra-docker amzn2extra-php8.0
+12 metadata files removed
+4 sqlite files removed
+0 metadata files removed
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum install php-cli php-pdo php-fpm php-json php-mysqlnd
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                               | 3.7 kB     00:00
+amzn2extra-docker                                        | 3.0 kB     00:00
+amzn2extra-php8.0                                        | 3.0 kB     00:00
+(1/7): amzn2-core/2/x86_64/group_gz                        | 2.5 kB   00:00
+(2/7): amzn2-core/2/x86_64/updateinfo                      | 416 kB   00:00
+(3/7): amzn2extra-php8.0/2/x86_64/primary_db               | 102 kB   00:00
+(4/7): amzn2extra-docker/2/x86_64/updateinfo               |   76 B   00:00
+(5/7): amzn2extra-php8.0/2/x86_64/updateinfo               |   76 B   00:00
+(6/7): amzn2extra-docker/2/x86_64/primary_db               |  79 kB   00:00
+(7/7): amzn2-core/2/x86_64/primary_db                      |  57 MB   00:00
+Resolving Dependencies
+--> Running transaction check
+---> Package php-cli.x86_64 0:8.0.8-1.amzn2 will be installed
+---> Package php-common.x86_64 0:8.0.8-1.amzn2 will be installed
+--> Processing Dependency: libzip.so.5()(64bit) for package: php-common-8.0.8-1.amzn2.x86_64
+---> Package php-fpm.x86_64 0:8.0.8-1.amzn2 will be installed
+---> Package php-mysqlnd.x86_64 0:8.0.8-1.amzn2 will be installed
+---> Package php-pdo.x86_64 0:8.0.8-1.amzn2 will be installed
+--> Running transaction check
+---> Package libzip.x86_64 0:1.3.2-1.amzn2.0.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package         Arch       Version                 Repository             Size
+================================================================================
+Installing:
+ php-cli         x86_64     8.0.8-1.amzn2           amzn2extra-php8.0     5.0 M
+ php-common      x86_64     8.0.8-1.amzn2           amzn2extra-php8.0     1.2 M
+ php-fpm         x86_64     8.0.8-1.amzn2           amzn2extra-php8.0     1.7 M
+ php-mysqlnd     x86_64     8.0.8-1.amzn2           amzn2extra-php8.0     189 k
+ php-pdo         x86_64     8.0.8-1.amzn2           amzn2extra-php8.0     122 k
+Installing for dependencies:
+ libzip          x86_64     1.3.2-1.amzn2.0.1       amzn2-core             62 k
+
+Transaction Summary
+================================================================================
+Install  5 Packages (+1 Dependent package)
+
+Total download size: 8.3 M
+Installed size: 41 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/6): libzip-1.3.2-1.amzn2.0.1.x86_64.rpm                 |  62 kB   00:00
+(2/6): php-common-8.0.8-1.amzn2.x86_64.rpm                 | 1.2 MB   00:00
+(3/6): php-cli-8.0.8-1.amzn2.x86_64.rpm                    | 5.0 MB   00:00
+(4/6): php-fpm-8.0.8-1.amzn2.x86_64.rpm                    | 1.7 MB   00:00
+(5/6): php-mysqlnd-8.0.8-1.amzn2.x86_64.rpm                | 189 kB   00:00
+(6/6): php-pdo-8.0.8-1.amzn2.x86_64.rpm                    | 122 kB   00:00
+--------------------------------------------------------------------------------
+Total                                               15 MB/s | 8.3 MB  00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libzip-1.3.2-1.amzn2.0.1.x86_64                              1/6
+  Installing : php-common-8.0.8-1.amzn2.x86_64                              2/6
+  Installing : php-pdo-8.0.8-1.amzn2.x86_64                                 3/6
+  Installing : php-mysqlnd-8.0.8-1.amzn2.x86_64                             4/6
+  Installing : php-fpm-8.0.8-1.amzn2.x86_64                                 5/6
+  Installing : php-cli-8.0.8-1.amzn2.x86_64                                 6/6
+  Verifying  : php-fpm-8.0.8-1.amzn2.x86_64                                 1/6
+  Verifying  : libzip-1.3.2-1.amzn2.0.1.x86_64                              2/6
+  Verifying  : php-common-8.0.8-1.amzn2.x86_64                              3/6
+  Verifying  : php-mysqlnd-8.0.8-1.amzn2.x86_64                             4/6
+  Verifying  : php-pdo-8.0.8-1.amzn2.x86_64                                 5/6
+  Verifying  : php-cli-8.0.8-1.amzn2.x86_64                                 6/6
+
+Installed:
+  php-cli.x86_64 0:8.0.8-1.amzn2       php-common.x86_64 0:8.0.8-1.amzn2
+  php-fpm.x86_64 0:8.0.8-1.amzn2       php-mysqlnd.x86_64 0:8.0.8-1.amzn2
+  php-pdo.x86_64 0:8.0.8-1.amzn2
+
+Dependency Installed:
+  libzip.x86_64 0:1.3.2-1.amzn2.0.1
+
+Complete!
+
+
+php-json is available in Amazon Linux Extra topics "php7.2" and "lamp-mariadb10.2-php7.2" and "php7.3" and "php7.4"
+
+To use, run
+# sudo amazon-linux-extras install :topic:
+
+Learn more at
+https://aws.amazon.com/amazon-linux-2/faqs/#Amazon_Linux_Extras
+
+
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum install php php-gd php-mbstring php-opcache php-xml php-common
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Package php-common-8.0.8-1.amzn2.x86_64 already installed and latest version
+Resolving Dependencies
+--> Running transaction check
+---> Package php.x86_64 0:8.0.8-1.amzn2 will be installed
+--> Processing Dependency: httpd-mmn = 20120211x8664 for package: php-8.0.8-1.amzn2.x86_64
+---> Package php-gd.x86_64 0:8.0.8-1.amzn2 will be installed
+---> Package php-mbstring.x86_64 0:8.0.8-1.amzn2 will be installed
+--> Processing Dependency: libonig.so.2()(64bit) for package: php-mbstring-8.0.8-1.amzn2.x86_64
+---> Package php-opcache.x86_64 0:8.0.8-1.amzn2 will be installed
+---> Package php-xml.x86_64 0:8.0.8-1.amzn2 will be installed
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.24)(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.22)(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.18)(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.13)(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.11)(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1()(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Processing Dependency: libexslt.so.0()(64bit) for package: php-xml-8.0.8-1.amzn2.x86_64
+--> Running transaction check
+---> Package httpd.x86_64 0:2.4.48-2.amzn2 will be installed
+--> Processing Dependency: httpd-tools = 2.4.48-2.amzn2 for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: httpd-filesystem = 2.4.48-2.amzn2 for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: system-logos-httpd for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: mod_http2 for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: httpd-filesystem for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.48-2.amzn2.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.48-2.amzn2.x86_64
+---> Package libxslt.x86_64 0:1.1.28-6.amzn2 will be installed
+---> Package oniguruma.x86_64 0:5.9.6-1.amzn2.0.4 will be installed
+--> Running transaction check
+---> Package apr.x86_64 0:1.6.3-5.amzn2.0.2 will be installed
+---> Package apr-util.x86_64 0:1.6.1-5.amzn2.0.2 will be installed
+--> Processing Dependency: apr-util-bdb(x86-64) = 1.6.1-5.amzn2.0.2 for package: apr-util-1.6.1-5.amzn2.0.2.x86_64
+---> Package generic-logos-httpd.noarch 0:18.0.0-4.amzn2 will be installed
+---> Package httpd-filesystem.noarch 0:2.4.48-2.amzn2 will be installed
+---> Package httpd-tools.x86_64 0:2.4.48-2.amzn2 will be installed
+---> Package mailcap.noarch 0:2.1.41-2.amzn2 will be installed
+---> Package mod_http2.x86_64 0:1.15.19-1.amzn2.0.1 will be installed
+--> Running transaction check
+---> Package apr-util-bdb.x86_64 0:1.6.1-5.amzn2.0.2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package               Arch     Version               Repository           Size
+================================================================================
+Installing:
+ php                   x86_64   8.0.8-1.amzn2         amzn2extra-php8.0   3.3 M
+ php-gd                x86_64   8.0.8-1.amzn2         amzn2extra-php8.0   168 k
+ php-mbstring          x86_64   8.0.8-1.amzn2         amzn2extra-php8.0   473 k
+ php-opcache           x86_64   8.0.8-1.amzn2         amzn2extra-php8.0   522 k
+ php-xml               x86_64   8.0.8-1.amzn2         amzn2extra-php8.0   173 k
+Installing for dependencies:
+ apr                   x86_64   1.6.3-5.amzn2.0.2     amzn2-core          118 k
+ apr-util              x86_64   1.6.1-5.amzn2.0.2     amzn2-core           99 k
+ apr-util-bdb          x86_64   1.6.1-5.amzn2.0.2     amzn2-core           19 k
+ generic-logos-httpd   noarch   18.0.0-4.amzn2        amzn2-core           19 k
+ httpd                 x86_64   2.4.48-2.amzn2        amzn2-core          1.3 M
+ httpd-filesystem      noarch   2.4.48-2.amzn2        amzn2-core           24 k
+ httpd-tools           x86_64   2.4.48-2.amzn2        amzn2-core           87 k
+ libxslt               x86_64   1.1.28-6.amzn2        amzn2-core          240 k
+ mailcap               noarch   2.1.41-2.amzn2        amzn2-core           31 k
+ mod_http2             x86_64   1.15.19-1.amzn2.0.1   amzn2-core          149 k
+ oniguruma             x86_64   5.9.6-1.amzn2.0.4     amzn2-core          127 k
+
+Transaction Summary
+================================================================================
+Install  5 Packages (+11 Dependent packages)
+
+Total download size: 6.8 M
+Installed size: 22 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/16): apr-1.6.3-5.amzn2.0.2.x86_64.rpm                   | 118 kB   00:00
+(2/16): apr-util-1.6.1-5.amzn2.0.2.x86_64.rpm              |  99 kB   00:00
+(3/16): apr-util-bdb-1.6.1-5.amzn2.0.2.x86_64.rpm          |  19 kB   00:00
+(4/16): generic-logos-httpd-18.0.0-4.amzn2.noarch.rpm      |  19 kB   00:00
+(5/16): httpd-filesystem-2.4.48-2.amzn2.noarch.rpm         |  24 kB   00:00
+(6/16): httpd-2.4.48-2.amzn2.x86_64.rpm                    | 1.3 MB   00:00
+(7/16): httpd-tools-2.4.48-2.amzn2.x86_64.rpm              |  87 kB   00:00
+(8/16): mailcap-2.1.41-2.amzn2.noarch.rpm                  |  31 kB   00:00
+(9/16): libxslt-1.1.28-6.amzn2.x86_64.rpm                  | 240 kB   00:00
+(10/16): mod_http2-1.15.19-1.amzn2.0.1.x86_64.rpm          | 149 kB   00:00
+(11/16): oniguruma-5.9.6-1.amzn2.0.4.x86_64.rpm            | 127 kB   00:00
+(12/16): php-gd-8.0.8-1.amzn2.x86_64.rpm                   | 168 kB   00:00
+(13/16): php-8.0.8-1.amzn2.x86_64.rpm                      | 3.3 MB   00:00
+(14/16): php-mbstring-8.0.8-1.amzn2.x86_64.rpm             | 473 kB   00:00
+(15/16): php-opcache-8.0.8-1.amzn2.x86_64.rpm              | 522 kB   00:00
+(16/16): php-xml-8.0.8-1.amzn2.x86_64.rpm                  | 173 kB   00:00
+--------------------------------------------------------------------------------
+Total                                               12 MB/s | 6.8 MB  00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : apr-1.6.3-5.amzn2.0.2.x86_64                                1/16
+  Installing : apr-util-bdb-1.6.1-5.amzn2.0.2.x86_64                       2/16
+  Installing : apr-util-1.6.1-5.amzn2.0.2.x86_64                           3/16
+  Installing : httpd-tools-2.4.48-2.amzn2.x86_64                           4/16
+  Installing : oniguruma-5.9.6-1.amzn2.0.4.x86_64                          5/16
+  Installing : mailcap-2.1.41-2.amzn2.noarch                               6/16
+  Installing : generic-logos-httpd-18.0.0-4.amzn2.noarch                   7/16
+  Installing : libxslt-1.1.28-6.amzn2.x86_64                               8/16
+  Installing : httpd-filesystem-2.4.48-2.amzn2.noarch                      9/16
+  Installing : mod_http2-1.15.19-1.amzn2.0.1.x86_64                       10/16
+  Installing : httpd-2.4.48-2.amzn2.x86_64                                11/16
+  Installing : php-8.0.8-1.amzn2.x86_64                                   12/16
+  Installing : php-xml-8.0.8-1.amzn2.x86_64                               13/16
+  Installing : php-mbstring-8.0.8-1.amzn2.x86_64                          14/16
+  Installing : php-opcache-8.0.8-1.amzn2.x86_64                           15/16
+  Installing : php-gd-8.0.8-1.amzn2.x86_64                                16/16
+  Verifying  : apr-util-1.6.1-5.amzn2.0.2.x86_64                           1/16
+  Verifying  : httpd-tools-2.4.48-2.amzn2.x86_64                           2/16
+  Verifying  : httpd-filesystem-2.4.48-2.amzn2.noarch                      3/16
+  Verifying  : libxslt-1.1.28-6.amzn2.x86_64                               4/16
+  Verifying  : php-gd-8.0.8-1.amzn2.x86_64                                 5/16
+  Verifying  : php-xml-8.0.8-1.amzn2.x86_64                                6/16
+  Verifying  : generic-logos-httpd-18.0.0-4.amzn2.noarch                   7/16
+  Verifying  : apr-util-bdb-1.6.1-5.amzn2.0.2.x86_64                       8/16
+  Verifying  : php-opcache-8.0.8-1.amzn2.x86_64                            9/16
+  Verifying  : apr-1.6.3-5.amzn2.0.2.x86_64                               10/16
+  Verifying  : php-8.0.8-1.amzn2.x86_64                                   11/16
+  Verifying  : mailcap-2.1.41-2.amzn2.noarch                              12/16
+  Verifying  : httpd-2.4.48-2.amzn2.x86_64                                13/16
+  Verifying  : mod_http2-1.15.19-1.amzn2.0.1.x86_64                       14/16
+  Verifying  : php-mbstring-8.0.8-1.amzn2.x86_64                          15/16
+  Verifying  : oniguruma-5.9.6-1.amzn2.0.4.x86_64                         16/16
+
+Installed:
+  php.x86_64 0:8.0.8-1.amzn2              php-gd.x86_64 0:8.0.8-1.amzn2
+  php-mbstring.x86_64 0:8.0.8-1.amzn2     php-opcache.x86_64 0:8.0.8-1.amzn2
+  php-xml.x86_64 0:8.0.8-1.amzn2
+
+Dependency Installed:
+  apr.x86_64 0:1.6.3-5.amzn2.0.2
+  apr-util.x86_64 0:1.6.1-5.amzn2.0.2
+  apr-util-bdb.x86_64 0:1.6.1-5.amzn2.0.2
+  generic-logos-httpd.noarch 0:18.0.0-4.amzn2
+  httpd.x86_64 0:2.4.48-2.amzn2
+  httpd-filesystem.noarch 0:2.4.48-2.amzn2
+  httpd-tools.x86_64 0:2.4.48-2.amzn2
+  libxslt.x86_64 0:1.1.28-6.amzn2
+  mailcap.noarch 0:2.1.41-2.amzn2
+  mod_http2.x86_64 0:1.15.19-1.amzn2.0.1
+  oniguruma.x86_64 0:5.9.6-1.amzn2.0.4
+
+Complete!
+[ec2-user@ip-172-16-1-21 ~]$ php -v
+PHP 8.0.8 (cli) (built: Jul  7 2021 17:35:32) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v4.0.8, Copyright (c) Zend Technologies
+    with Zend OPcache v8.0.8, Copyright (c), by Zend Technologies
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+mysql80-community-release-el7-3.noarch.rpm               |  25 kB     00:00
+Examining /var/tmp/yum-root-U4YhG1/mysql80-community-release-el7-3.noarch.rpm: mysql80-community-release-el7-3.noarch
+Marking /var/tmp/yum-root-U4YhG1/mysql80-community-release-el7-3.noarch.rpm to be installed
+Resolving Dependencies
+--> Running transaction check
+---> Package mysql80-community-release.noarch 0:el7-3 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch   Version
+                                  Repository                               Size
+================================================================================
+Installing:
+ mysql80-community-release
+                     noarch el7-3 /mysql80-community-release-el7-3.noarch  31 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 31 k
+Installed size: 31 k
+Is this ok [y/d/N]: y
+Downloading packages:
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : mysql80-community-release-el7-3.noarch                       1/1
+  Verifying  : mysql80-community-release-el7-3.noarch                       1/1
+
+Installed:
+  mysql80-community-release.noarch 0:el7-3
+
+Complete!
+[ec2-user@ip-172-16-1-21 ~]$ sudo yum install --enablerepo=mysql80-community mysql-community-server mysql-community-devel
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+45 packages excluded due to repository priority protections
+Resolving Dependencies
+--> Running transaction check
+---> Package mysql-community-devel.x86_64 0:8.0.26-1.el7 will be installed
+--> Processing Dependency: mysql-community-libs(x86-64) >= 8.0.11 for package: mysql-community-devel-8.0.26-1.el7.x86_64
+--> Processing Dependency: pkgconfig(openssl) for package: mysql-community-devel-8.0.26-1.el7.x86_64
+--> Processing Dependency: libmysqlclient.so.21()(64bit) for package: mysql-community-devel-8.0.26-1.el7.x86_64
+---> Package mysql-community-server.x86_64 0:8.0.26-1.el7 will be installed
+--> Processing Dependency: mysql-community-common(x86-64) = 8.0.26-1.el7 for package: mysql-community-server-8.0.26-1.el7.x86_64
+--> Processing Dependency: mysql-community-client(x86-64) >= 8.0.11 for package: mysql-community-server-8.0.26-1.el7.x86_64
+--> Running transaction check
+---> Package mariadb-libs.x86_64 1:5.5.68-1.amzn2 will be obsoleted
+--> Processing Dependency: libmysqlclient.so.18()(64bit) for package: 2:postfix-2.10.1-6.amzn2.0.3.x86_64
+--> Processing Dependency: libmysqlclient.so.18(libmysqlclient_18)(64bit) for package: 2:postfix-2.10.1-6.amzn2.0.3.x86_64
+---> Package mysql-community-client.x86_64 0:8.0.26-1.el7 will be installed
+--> Processing Dependency: mysql-community-client-plugins = 8.0.26-1.el7 for package: mysql-community-client-8.0.26-1.el7.x86_64
+--> Processing Dependency: libncurses.so.5()(64bit) for package: mysql-community-client-8.0.26-1.el7.x86_64
+--> Processing Dependency: libtinfo.so.5()(64bit) for package: mysql-community-client-8.0.26-1.el7.x86_64
+---> Package mysql-community-common.x86_64 0:8.0.26-1.el7 will be installed
+---> Package mysql-community-libs.x86_64 0:8.0.26-1.el7 will be obsoleting
+---> Package openssl-devel.x86_64 1:1.0.2k-19.amzn2.0.7 will be installed
+--> Processing Dependency: zlib-devel(x86-64) for package: 1:openssl-devel-1.0.2k-19.amzn2.0.7.x86_64
+--> Processing Dependency: krb5-devel(x86-64) for package: 1:openssl-devel-1.0.2k-19.amzn2.0.7.x86_64
+--> Running transaction check
+---> Package krb5-devel.x86_64 0:1.15.1-37.amzn2.2.2 will be installed
+--> Processing Dependency: libkadm5(x86-64) = 1.15.1-37.amzn2.2.2 for package: krb5-devel-1.15.1-37.amzn2.2.2.x86_64
+--> Processing Dependency: libverto-devel for package: krb5-devel-1.15.1-37.amzn2.2.2.x86_64
+--> Processing Dependency: libselinux-devel for package: krb5-devel-1.15.1-37.amzn2.2.2.x86_64
+--> Processing Dependency: libcom_err-devel for package: krb5-devel-1.15.1-37.amzn2.2.2.x86_64
+--> Processing Dependency: keyutils-libs-devel for package: krb5-devel-1.15.1-37.amzn2.2.2.x86_64
+---> Package mysql-community-client-plugins.x86_64 0:8.0.26-1.el7 will be installed
+---> Package mysql-community-libs-compat.x86_64 0:8.0.26-1.el7 will be obsoleting
+---> Package ncurses-compat-libs.x86_64 0:6.0-8.20170212.amzn2.1.3 will be installed
+---> Package zlib-devel.x86_64 0:1.2.7-18.amzn2 will be installed
+--> Running transaction check
+---> Package keyutils-libs-devel.x86_64 0:1.5.8-3.amzn2.0.2 will be installed
+---> Package libcom_err-devel.x86_64 0:1.42.9-19.amzn2 will be installed
+---> Package libkadm5.x86_64 0:1.15.1-37.amzn2.2.2 will be installed
+---> Package libselinux-devel.x86_64 0:2.5-12.amzn2.0.2 will be installed
+--> Processing Dependency: libsepol-devel(x86-64) >= 2.5-6 for package: libselinux-devel-2.5-12.amzn2.0.2.x86_64
+--> Processing Dependency: pkgconfig(libsepol) for package: libselinux-devel-2.5-12.amzn2.0.2.x86_64
+--> Processing Dependency: pkgconfig(libpcre) for package: libselinux-devel-2.5-12.amzn2.0.2.x86_64
+---> Package libverto-devel.x86_64 0:0.2.5-4.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package libsepol-devel.x86_64 0:2.5-8.1.amzn2.0.2 will be installed
+---> Package pcre-devel.x86_64 0:8.32-17.amzn2.0.2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                Arch   Version                  Repository         Size
+================================================================================
+Installing:
+ mysql-community-devel  x86_64 8.0.26-1.el7             mysql80-community 6.5 M
+ mysql-community-libs   x86_64 8.0.26-1.el7             mysql80-community 4.0 M
+     replacing  mariadb-libs.x86_64 1:5.5.68-1.amzn2
+ mysql-community-libs-compat
+                        x86_64 8.0.26-1.el7             mysql80-community 1.2 M
+     replacing  mariadb-libs.x86_64 1:5.5.68-1.amzn2
+ mysql-community-server x86_64 8.0.26-1.el7             mysql80-community 434 M
+Installing for dependencies:
+ keyutils-libs-devel    x86_64 1.5.8-3.amzn2.0.2        amzn2-core         37 k
+ krb5-devel             x86_64 1.15.1-37.amzn2.2.2      amzn2-core        272 k
+ libcom_err-devel       x86_64 1.42.9-19.amzn2          amzn2-core         32 k
+ libkadm5               x86_64 1.15.1-37.amzn2.2.2      amzn2-core        179 k
+ libselinux-devel       x86_64 2.5-12.amzn2.0.2         amzn2-core        187 k
+ libsepol-devel         x86_64 2.5-8.1.amzn2.0.2        amzn2-core         77 k
+ libverto-devel         x86_64 0.2.5-4.amzn2.0.2        amzn2-core         12 k
+ mysql-community-client x86_64 8.0.26-1.el7             mysql80-community  46 M
+ mysql-community-client-plugins
+                        x86_64 8.0.26-1.el7             mysql80-community 4.5 M
+ mysql-community-common x86_64 8.0.26-1.el7             mysql80-community 620 k
+ ncurses-compat-libs    x86_64 6.0-8.20170212.amzn2.1.3 amzn2-core        308 k
+ openssl-devel          x86_64 1:1.0.2k-19.amzn2.0.7    amzn2-core        1.5 M
+ pcre-devel             x86_64 8.32-17.amzn2.0.2        amzn2-core        480 k
+ zlib-devel             x86_64 1.2.7-18.amzn2           amzn2-core         50 k
+
+Transaction Summary
+================================================================================
+Install  4 Packages (+14 Dependent packages)
+
+Total download size: 499 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/18): keyutils-libs-devel-1.5.8-3.amzn2.0.2.x86_64.rpm   |  37 kB   00:00
+(2/18): krb5-devel-1.15.1-37.amzn2.2.2.x86_64.rpm          | 272 kB   00:00
+(3/18): libcom_err-devel-1.42.9-19.amzn2.x86_64.rpm        |  32 kB   00:00
+(4/18): libkadm5-1.15.1-37.amzn2.2.2.x86_64.rpm            | 179 kB   00:00
+(5/18): libselinux-devel-2.5-12.amzn2.0.2.x86_64.rpm       | 187 kB   00:00
+(6/18): libverto-devel-0.2.5-4.amzn2.0.2.x86_64.rpm        |  12 kB   00:00
+(7/18): libsepol-devel-2.5-8.1.amzn2.0.2.x86_64.rpm        |  77 kB   00:00
+warning: /var/cache/yum/x86_64/2/mysql80-community/packages/mysql-community-client-plugins-8.0.26-1.el7.x86_64.rpm: Header V3 DSA/SHA256 Signature, key ID 5072e1f5: NOKEY
+Public key for mysql-community-client-plugins-8.0.26-1.el7.x86_64.rpm is not installed
+(8/18): mysql-community-client-plugins-8.0.26-1.el7.x86_64 | 4.5 MB   00:00
+(9/18): mysql-community-common-8.0.26-1.el7.x86_64.rpm     | 620 kB   00:00
+(10/18): mysql-community-devel-8.0.26-1.el7.x86_64.rpm     | 6.5 MB   00:00
+(11/18): mysql-community-libs-8.0.26-1.el7.x86_64.rpm      | 4.0 MB   00:00
+(12/18): mysql-community-libs-compat-8.0.26-1.el7.x86_64.r | 1.2 MB   00:00
+(13/18): ncurses-compat-libs-6.0-8.20170212.amzn2.1.3.x86_ | 308 kB   00:00
+(14/18): pcre-devel-8.32-17.amzn2.0.2.x86_64.rpm           | 480 kB   00:00
+(15/18): zlib-devel-1.2.7-18.amzn2.x86_64.rpm              |  50 kB   00:00
+(16/18): mysql-community-client-8.0.26-1.el7.x86_64.rpm    |  46 MB   00:00
+(17/18): openssl-devel-1.0.2k-19.amzn2.0.7.x86_64.rpm      | 1.5 MB   00:00
+(18/18): mysql-community-server-8.0.26-1.el7.x86_64.rpm    | 434 MB   00:06
+--------------------------------------------------------------------------------
+Total                                               65 MB/s | 499 MB  00:07
+Retrieving key from file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+Importing GPG key 0x5072E1F5:
+ Userid     : "MySQL Release Engineering <mysql-build@oss.oracle.com>"
+ Fingerprint: a4a9 4068 76fc bd3c 4567 70c8 8c71 8d3b 5072 e1f5
+ Package    : mysql80-community-release-el7-3.noarch (installed)
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : mysql-community-client-plugins-8.0.26-1.el7.x86_64          1/19
+  Installing : mysql-community-common-8.0.26-1.el7.x86_64                  2/19
+  Installing : mysql-community-libs-8.0.26-1.el7.x86_64                    3/19
+  Installing : zlib-devel-1.2.7-18.amzn2.x86_64                            4/19
+  Installing : libcom_err-devel-1.42.9-19.amzn2.x86_64                     5/19
+  Installing : libsepol-devel-2.5-8.1.amzn2.0.2.x86_64                     6/19
+  Installing : keyutils-libs-devel-1.5.8-3.amzn2.0.2.x86_64                7/19
+  Installing : ncurses-compat-libs-6.0-8.20170212.amzn2.1.3.x86_64         8/19
+  Installing : mysql-community-client-8.0.26-1.el7.x86_64                  9/19
+  Installing : libkadm5-1.15.1-37.amzn2.2.2.x86_64                        10/19
+  Installing : pcre-devel-8.32-17.amzn2.0.2.x86_64                        11/19
+  Installing : libselinux-devel-2.5-12.amzn2.0.2.x86_64                   12/19
+  Installing : libverto-devel-0.2.5-4.amzn2.0.2.x86_64                    13/19
+  Installing : krb5-devel-1.15.1-37.amzn2.2.2.x86_64                      14/19
+  Installing : 1:openssl-devel-1.0.2k-19.amzn2.0.7.x86_64                 15/19
+  Installing : mysql-community-devel-8.0.26-1.el7.x86_64                  16/19
+  Installing : mysql-community-server-8.0.26-1.el7.x86_64                 17/19
+  Installing : mysql-community-libs-compat-8.0.26-1.el7.x86_64            18/19
+  Erasing    : 1:mariadb-libs-5.5.68-1.amzn2.x86_64                       19/19
+  Verifying  : 1:openssl-devel-1.0.2k-19.amzn2.0.7.x86_64                  1/19
+  Verifying  : libverto-devel-0.2.5-4.amzn2.0.2.x86_64                     2/19
+  Verifying  : pcre-devel-8.32-17.amzn2.0.2.x86_64                         3/19
+  Verifying  : libkadm5-1.15.1-37.amzn2.2.2.x86_64                         4/19
+  Verifying  : ncurses-compat-libs-6.0-8.20170212.amzn2.1.3.x86_64         5/19
+  Verifying  : libselinux-devel-2.5-12.amzn2.0.2.x86_64                    6/19
+  Verifying  : keyutils-libs-devel-1.5.8-3.amzn2.0.2.x86_64                7/19
+  Verifying  : libsepol-devel-2.5-8.1.amzn2.0.2.x86_64                     8/19
+  Verifying  : mysql-community-libs-compat-8.0.26-1.el7.x86_64             9/19
+  Verifying  : krb5-devel-1.15.1-37.amzn2.2.2.x86_64                      10/19
+  Verifying  : mysql-community-libs-8.0.26-1.el7.x86_64                   11/19
+  Verifying  : mysql-community-common-8.0.26-1.el7.x86_64                 12/19
+  Verifying  : libcom_err-devel-1.42.9-19.amzn2.x86_64                    13/19
+  Verifying  : zlib-devel-1.2.7-18.amzn2.x86_64                           14/19
+  Verifying  : mysql-community-server-8.0.26-1.el7.x86_64                 15/19
+  Verifying  : mysql-community-client-plugins-8.0.26-1.el7.x86_64         16/19
+  Verifying  : mysql-community-devel-8.0.26-1.el7.x86_64                  17/19
+  Verifying  : mysql-community-client-8.0.26-1.el7.x86_64                 18/19
+  Verifying  : 1:mariadb-libs-5.5.68-1.amzn2.x86_64                       19/19
+
+Installed:
+  mysql-community-devel.x86_64 0:8.0.26-1.el7
+  mysql-community-libs.x86_64 0:8.0.26-1.el7
+  mysql-community-libs-compat.x86_64 0:8.0.26-1.el7
+  mysql-community-server.x86_64 0:8.0.26-1.el7
+
+Dependency Installed:
+  keyutils-libs-devel.x86_64 0:1.5.8-3.amzn2.0.2
+  krb5-devel.x86_64 0:1.15.1-37.amzn2.2.2
+  libcom_err-devel.x86_64 0:1.42.9-19.amzn2
+  libkadm5.x86_64 0:1.15.1-37.amzn2.2.2
+  libselinux-devel.x86_64 0:2.5-12.amzn2.0.2
+  libsepol-devel.x86_64 0:2.5-8.1.amzn2.0.2
+  libverto-devel.x86_64 0:0.2.5-4.amzn2.0.2
+  mysql-community-client.x86_64 0:8.0.26-1.el7
+  mysql-community-client-plugins.x86_64 0:8.0.26-1.el7
+  mysql-community-common.x86_64 0:8.0.26-1.el7
+  ncurses-compat-libs.x86_64 0:6.0-8.20170212.amzn2.1.3
+  openssl-devel.x86_64 1:1.0.2k-19.amzn2.0.7
+  pcre-devel.x86_64 0:8.32-17.amzn2.0.2
+  zlib-devel.x86_64 0:1.2.7-18.amzn2
+
+Replaced:
+  mariadb-libs.x86_64 1:5.5.68-1.amzn2
+
+Complete!
+[ec2-user@ip-172-16-1-21 ~]$ sudo systemctl start mysqld.service
+[ec2-user@ip-172-16-1-21 ~]$ sudo systemctl enable mysqld.service
+[ec2-user@ip-172-16-1-21 ~]$ sudo grep password /var/log/mysqld.log
+2021-10-02T23:08:17.965223Z 6 [Note] [MY-010454] [Server] A temporary password is generated for root@localhost: -UoV#e*6uwfh
+[ec2-user@ip-172-16-1-21 ~]$ mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.26
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'P@ssw0rd';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> \q
+Bye
+[ec2-user@ip-172-16-1-21 ~]$ mysql -uroot -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE wp_database;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> CREATE USER 'wp_user'@'localhost' IDENTIFIED BY 'P@ssw0rd';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT ALL PRIVILEGES ON `wp_database `.* TO "wp_user"@"localhost";
+ERROR 1102 (42000): Incorrect database name 'wp_database '
+mysql> GRANT ALL PRIVILEGES ON `wp_database `.* TO "wp_user"@"localhost";
+ERROR 1102 (42000): Incorrect database name 'wp_database '
+mysql> ^C
+mysql> GRANT ALL PRIVILEGES ON `wp_database`.* TO "wp_user"@"localhost";
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> q\
+    ->
+    -> ^C
+mysql> /q
+    -> ^C
+mysql> ^C
+mysql> exit
+Bye
+[ec2-user@ip-172-16-1-21 ~]$ mysql -uwp_user -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> mysql --version
+    -> ^C
+mysql> ^C
+mysql> exit
+Bye
+[ec2-user@ip-172-16-1-21 ~]$ mysql --version
+mysql  Ver 8.0.26 for Linux on x86_64 (MySQL Community Server - GPL)
+[ec2-user@ip-172-16-1-21 ~]$ sudo systemctl start httpd
+[ec2-user@ip-172-16-1-21 ~]$ sudo systemctl enable httpd
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
+[ec2-user@ip-172-16-1-21 ~]$ sudo systemctl status httpd
+● httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled; vendor preset: disabled)
+  Drop-In: /usr/lib/systemd/system/httpd.service.d
+           mqphp-fpm.conf
+   Active: active (running) since Sat 2021-10-02 23:24:55 UTC; 11s ago
+     Docs: man:httpd.service(8)
+ Main PID: 7247 (httpd)
+   Status: "Total requests: 0; Idle/Busy workers 100/0;Requests/sec: 0; Bytes served/sec:   0 B/sec"
+   CGroup: /system.slice/httpd.service
+           tq7247 /usr/sbin/httpd -DFOREGROUND
+           tq7253 /usr/sbin/httpd -DFOREGROUND
+           tq7254 /usr/sbin/httpd -DFOREGROUND
+           tq7255 /usr/sbin/httpd -DFOREGROUND
+           tq7256 /usr/sbin/httpd -DFOREGROUND
+           mq7257 /usr/sbin/httpd -DFOREGROUND
+
+Oct 02 23:24:55 ip-172-16-1-21.ap-northeast-1.compute.internal systemd[1]: St...
+Oct 02 23:24:55 ip-172-16-1-21.ap-northeast-1.compute.internal systemd[1]: St...
+Hint: Some lines were ellipsized, use -l to show in full.
+[ec2-user@ip-172-16-1-21 ~]$ httpd -v
+Server version: Apache/2.4.48 ()
+Server built:   Jun 25 2021 18:53:37
+[ec2-user@ip-172-16-1-21 ~]$ wget https://wordpress.org/latest.tar.gz
+--2021-10-02 23:25:28--  https://wordpress.org/latest.tar.gz
+Resolving wordpress.org (wordpress.org)... 198.143.164.252
+Connecting to wordpress.org (wordpress.org)|198.143.164.252|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15087630 (14M) [application/octet-stream]
+Saving to: ‘latest.tar.gz’
+
+100%[======================================>] 15,087,630  6.71MB/s   in 2.1s
+
+2021-10-02 23:25:30 (6.71 MB/s) - ‘latest.tar.gz’ saved [15087630/15087630]
+
+[ec2-user@ip-172-16-1-21 ~]$  tar -xzf latest.tar.gz
+[ec2-user@ip-172-16-1-21 ~]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
+[ec2-user@ip-172-16-1-21 ~]$ vim wordpress/wp-config.php
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+/**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the installation.
+ * You don't have to use the web site, you can copy this file to "wp-config.php"
+ * and fill in the values.
+ *
+ * This file contains the following configurations:
+ *
+ * * MySQL settings
+ * * Secret keys
+ * * Database table prefix
+ * * ABSPATH
+ *
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
+ *
+ * @package WordPress
+ */
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'database_name_here' );
+"wordpress/wp-config.php" [dos] 96L, 3004C                    1,1           Top
+<?php
+/**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the installation.
+ * You don't have to use the web site, you can copy this file to "wp-config.php"
+ * and fill in the values.
+ *
+ * This file contains the following configurations:
+ *
+ * * MySQL settings
+ * * Secret keys
+ * * Database table prefix
+ * * ABSPATH
+ *
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
+ *
+ * @package WordPress
+ */
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'database_name_here' );
+"wordpress/wp-config.php" [dos] 96L, 3004C                    1,1           Top
+<?php
+/**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the installation.
+ * You don't have to use the web site, you can copy this file to "wp-config.php"
+ * and fill in the values.
+ *
+ * This file contains the following configurations:
+ *
+ * * MySQL settings
+ * * Secret keys
+ * * Database table prefix
+ * * ABSPATH
+ *
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
+ *
+ * @package WordPress
+ */
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'database_name_here' );
+"wordpress/wp-config.php" [dos] 96L, 3004C                    1,1           Top
+<?php
+/**
+ * The base configuration for WordPress
+ *
+ * The wp-config.php creation script uses this file during the installation.
+ * You don't have to use the web site, you can copy this file to "wp-config.php"
+ * and fill in the values.
+ *
+ * This file contains the following configurations:
+ *
+ * * MySQL settings
+ * * Secret keys
+ * * Database table prefix
+ * * ABSPATH
+ *
+ * @link https://wordpress.org/support/article/editing-wp-config-php/
+ *
+ * @package WordPress
+ */
+
+define( 'DB_NAME', 'database_name_here' );
+
+/** MySQL database username */
+/** MySQL database password */
+define( 'DB_PASSWORD', 'password_here' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'localhost' );
+
+/** Database charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
+
+/** The database collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+/**#@+
+ * Authentication unique keys and salts.
+ *
+ * Change these to different unique phrases! You can generate these using
+ *
+ * You can change these at any point in time to invalidate all existing cookies.
+ * This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define( 'AUTH_KEY',         'put your unique phrase here' );
+define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
+define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
+define( 'NONCE_KEY',        'put your unique phrase here' );
+define( 'AUTH_SALT',        'put your unique phrase here' );
+define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
+define( 'NONCE_SALT',       'put your unique phrase here' );
+
+/**#@-*/
+
+/**
+ * WordPress database table prefix.
+ *
+ * You can have multiple installations in one database if you give each
+ * a unique prefix. Only numbers, letters, and underscores please!
+ */
+$table_prefix = 'wp_';
+
+/**
+ * For developers: WordPress debugging mode.
+ *
+ * Change this to true to enable the display of notices during development.
+define( 'DB_CHARSET', 'utf8' );
+
+/** The database collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+/**#@+
+ * Authentication unique keys and salts.
+ *
+ * Change these to different unique phrases! You can generate these using
+< define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
+< define( 'NONCE_KEY',        'put your unique phrase here' );
+< define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
+ * @package WordPress
+ */
+
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'wp_database' );
+
+/** MySQL database username */
+define( 'DB_USER', 'wp_user' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'P@ssw0rd' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'localhost' );
+
+/** Database charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
+
+/** The database collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+/**#@+
+"wordpress/wp-config.php" [dos] 97L, 3268C written
+
+
+Oct 02 23:24:55 ip-172-16-1-21.ap-northeast-1.compute.internal systemd[1]: St...
+Oct 02 23:24:55 ip-172-16-1-21.ap-northeast-1.compute.internal systemd[1]: St...
+Hint: Some lines were ellipsized, use -l to show in full.
+[ec2-user@ip-172-16-1-21 ~]$ httpd -v
+Server version: Apache/2.4.48 ()
+Server built:   Jun 25 2021 18:53:37
+[ec2-user@ip-172-16-1-21 ~]$ wget https://wordpress.org/latest.tar.gz
+--2021-10-02 23:25:28--  https://wordpress.org/latest.tar.gz
+Resolving wordpress.org (wordpress.org)... 198.143.164.252
+Connecting to wordpress.org (wordpress.org)|198.143.164.252|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15087630 (14M) [application/octet-stream]
+Saving to: ‘latest.tar.gz’
+
+100%[======================================>] 15,087,630  6.71MB/s   in 2.1s
+
+2021-10-02 23:25:30 (6.71 MB/s) - ‘latest.tar.gz’ saved [15087630/15087630]
+
+[ec2-user@ip-172-16-1-21 ~]$  tar -xzf latest.tar.gz
+[ec2-user@ip-172-16-1-21 ~]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
+[ec2-user@ip-172-16-1-21 ~]$ vim wordpress/wp-config.php
+[ec2-user@ip-172-16-1-21 ~]$ sudo cp -r wordpress/* /var/www/html/
+[ec2-user@ip-172-16-1-21 ~]$ sudo cp -pi /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_org
+[ec2-user@ip-172-16-1-21 ~]$ sudo vim /etc/httpd/conf/httpd.conf
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
+# This is the main Apache HTTP server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.
+#
+# Configuration and logfile names: If the filenames you specify for many
+# of the server's control files begin with "/" (or "drive:/" for Win32), the
+# server will use that explicit path.  If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so 'log/access_log'
+# with ServerRoot set to '/www' will be interpreted by the
+# server as '/www/log/access_log', where as '/log/access_log' will be
+# interpreted as '/log/access_log'.
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+"/etc/httpd/conf/httpd.conf" 362L, 11910C                     1,1           Top
+#
+# This is the main Apache HTTP server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.
+#
+# Configuration and logfile names: If the filenames you specify for many
+# of the server's control files begin with "/" (or "drive:/" for Win32), the
+# server will use that explicit path.  If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so 'log/access_log'
+# with ServerRoot set to '/www' will be interpreted by the
+# server as '/www/log/access_log', where as '/log/access_log' will be
+# interpreted as '/log/access_log'.
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+"/etc/httpd/conf/httpd.conf" 362L, 11910C                     1,1           Top
+#
+# This is the main Apache HTTP server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.
+#
+# Configuration and logfile names: If the filenames you specify for many
+# of the server's control files begin with "/" (or "drive:/" for Win32), the
+# server will use that explicit path.  If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so 'log/access_log'
+# with ServerRoot set to '/www' will be interpreted by the
+# server as '/www/log/access_log', where as '/log/access_log' will be
+# interpreted as '/log/access_log'.
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+"/etc/httpd/conf/httpd.conf" 362L, 11910C                     1,1           Top
+# with ServerRoot set to '/www' will be interpreted by the
+# server as '/www/log/access_log', where as '/log/access_log' will be
+# interpreted as '/log/access_log'.
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+#
+# Do not add a slash at the end of the directory path.  If you point
+# ServerRoot at a non-local disk, be sure to specify a local disk on the
+# Mutex directive, if file-based mutexes are used.  If you wish to share the
+# same ServerRoot for multiple httpd daemons, you will need to change at
+# least PidFile.
+#
+ServerRoot "/etc/httpd"
+
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the <VirtualHost>
+# directive.
+#
+# Change this to Listen on specific IP addresses as shown below to
+# prevent Apache from glomming onto all bound IP addresses.
+/AllowO
+#
+# If your host doesn't have a registered DNS name, enter its IP address here.
+#
+#ServerName www.example.com:80
+
+#
+# Deny access to the entirety of your server's filesystem. You must
+# explicitly permit access to web content directories in other
+# <Directory> blocks below.
+#
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+
+#
+# Note that from this point forward you must specifically allow
+# particular features to be enabled - so if something's not working as
+# you might expect, make sure that you have specifically enabled it
+# below.
+#
+
+#
+/AllowOi
+#
+# This is the main Apache HTTP server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.
+#
+# Configuration and logfile names: If the filenames you specify for many
+# of the server's control files begin with "/" (or "drive:/" for Win32), the
+# server will use that explicit path.  If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so 'log/access_log'
+# with ServerRoot set to '/www' will be interpreted by the
+# server as '/www/log/access_log', where as '/log/access_log' will be
+# interpreted as '/log/access_log'.
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+/AllowO
+#
+# If your host doesn't have a registered DNS name, enter its IP address here.
+#
+#ServerName www.example.com:80
+
+#
+# Deny access to the entirety of your server's filesystem. You must
+# explicitly permit access to web content directories in other
+# <Directory> blocks below.
+#
+<Directory />
+    AllowOverride All
+    Require all denied
+</Directory>
+
+#
+# Note that from this point forward you must specifically allow
+# particular features to be enabled - so if something's not working as
+# you might expect, make sure that you have specifically enabled it
+# below.
+参考
+https://qiita.com/kooohei/items/0d8cf32403b99bd3914a
+
+#
+
+#
+"/etc/httpd/conf/httpd.conf" 362L, 11909C written
+
+[ec2-user@ip-172-16-1-21 ~]$ httpd -v
+Server version: Apache/2.4.48 ()
+Server built:   Jun 25 2021 18:53:37
+[ec2-user@ip-172-16-1-21 ~]$ wget https://wordpress.org/latest.tar.gz
+--2021-10-02 23:25:28--  https://wordpress.org/latest.tar.gz
+Resolving wordpress.org (wordpress.org)... 198.143.164.252
+Connecting to wordpress.org (wordpress.org)|198.143.164.252|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15087630 (14M) [application/octet-stream]
+Saving to: ‘latest.tar.gz’
+
+100%[======================================>] 15,087,630  6.71MB/s   in 2.1s
+
+2021-10-02 23:25:30 (6.71 MB/s) - ‘latest.tar.gz’ saved [15087630/15087630]
+
+[ec2-user@ip-172-16-1-21 ~]$  tar -xzf latest.tar.gz
+[ec2-user@ip-172-16-1-21 ~]$ cp wordpress/wp-config-sample.php wordpress/wp-config.php
+[ec2-user@ip-172-16-1-21 ~]$ vim wordpress/wp-config.php
+[ec2-user@ip-172-16-1-21 ~]$ sudo cp -r wordpress/* /var/www/html/
+[ec2-user@ip-172-16-1-21 ~]$ sudo cp -pi /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf_org
+[ec2-user@ip-172-16-1-21 ~]$ sudo vim /etc/httpd/conf/httpd.conf
+[ec2-user@ip-172-16-1-21 ~]$ sudo chown -R apache /var/www
+[ec2-user@ip-172-16-1-21 ~]$ sudo chgrp -R apache /var/www
+[ec2-user@ip-172-16-1-21 ~]$ sudo chmod 2775 /var/www
+[ec2-user@ip-172-16-1-21 ~]$ find /var/www -type d -exec sudo chmod 2775 {} \;
+[ec2-user@ip-172-16-1-21 ~]$ find /var/www -type f -exec sudo chmod 0664 {} \;
+[ec2-user@ip-172-16-1-21 ~]$ sudo systemctl restart httpd
+[ec2-user@ip-172-16-1-21 ~]$
