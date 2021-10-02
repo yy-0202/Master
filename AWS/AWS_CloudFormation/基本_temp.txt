@@ -1,0 +1,14 @@
+# テンプレート形式のバージョン
+AWSTemplateFormatVersion:
+
+# テンプレートに関する記述
+Description:
+
+# 入力パラメータ
+Parameters: 
+
+# 構築するリソースの記述
+Resources:
+
+# 出力パラメータ
+Outputs:
