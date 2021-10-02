@@ -1,0 +1,22 @@
+yy@yy:~$ sudo snap install microk8s --classic
+2021-10-02T12:32:16Z INFO Waiting for automatic snapd restart...
+microk8s (1.21/stable) v1.21.5 from Canonical? installed
+yy@yy:~$ microk8s.status
+Insufficient permissions to access MicroK8s.
+You can either try again with sudo or add the user yy to the 'microk8s' group:
+
+    sudo usermod -a -G microk8s yy
+    sudo chown -f -R yy ~/.kube
+
+After this, reload the user groups either via a reboot or by running 'newgrp microk8s'.
+yy@yy:~$ sudo usermod -a -G microk8s yy
+yy@yy:~$ sudo chown -f -R yy ~/.kube
+yy@yy:~$ microk8s.status
+Insufficient permissions to access MicroK8s.
+You can either try again with sudo or add the user yy to the 'microk8s' group:
+
+    sudo usermod -a -G microk8s yy
+    sudo chown -f -R yy ~/.kube
+
+After this, reload the user groups either via a reboot or by running 'newgrp microk8s'.
+yy@yy:~$
