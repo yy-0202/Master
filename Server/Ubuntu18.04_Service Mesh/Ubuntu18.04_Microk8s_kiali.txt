@@ -1,0 +1,1587 @@
+・参考
+https://korattablog.com/2020/06/11/microk8s%E3%81%A7kiali%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B/
+・ubuntu18.04に構築済みのmicrok8sを使用する。
+・Kialiをインストール
+
+1.ログ
+Welcome to Ubuntu 18.04.6 LTS (GNU/Linux 4.15.0-159-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ System information disabled due to load higher than 2.0
+
+ * Super-optimized for small spaces - read how we shrank the memory
+   footprint of MicroK8s to make it the smallest full K8s around.
+
+   https://ubuntu.com/blog/microk8s-memory-optimisation
+
+0 updates can be applied immediately.
+
+New release '20.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Sat Oct  2 12:38:19 2021 from 192.168.0.102
+yy@yy:~$ systemctl status microk8s
+Unit microk8s.service could not be found.
+yy@yy:~$ sudo systemctl status microk8s
+[sudo] password for yy:
+Unit microk8s.service could not be found.
+yy@yy:~$ ll
+total 40
+drwxr-xr-x 6 yy   yy   4096 Oct  2 12:38 ./
+drwxr-xr-x 3 root root 4096 Oct  2 12:13 ../
+-rw------- 1 yy   yy   1024 Oct  2 12:36 .bash_history
+-rw-r--r-- 1 yy   yy    220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 yy   yy   3771 Apr  4  2018 .bashrc
+drwx------ 2 yy   yy   4096 Oct  2 12:14 .cache/
+drwx------ 3 yy   yy   4096 Oct  2 12:14 .gnupg/
+drwxr-x--- 3 yy   yy   4096 Oct  2 12:38 .kube/
+-rw-r--r-- 1 yy   yy    807 Apr  4  2018 .profile
+drwxr-xr-x 3 yy   yy   4096 Oct  2 12:34 snap/
+-rw-r--r-- 1 yy   yy      0 Oct  2 12:18 .sudo_as_admin_successful
+yy@yy:~$ sudo mickrok8s.status
+sudo: mickrok8s.status: command not found
+yy@yy:~$ sudo microk8s.config
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUREekNDQWZlZ0F3SUJBZ0lVTXlnSUg1Tm91bUZPb3Z5NnhSOU03R0lRSTBvd0RRWUpLb1pJaHZjTkFRRUwKQlFBd0Z6RVZNQk1HQTFVRUF3d01NVEF1TVRVeUxqRTRNeTR4TUI0WERUSXhNVEF3TWpFeU16TXpNMW9YRFRNeApNRGt6TURFeU16TXpNMW93RnpFVk1CTUdBMVVFQXd3TU1UQXVNVFV5TGpFNE15NHhNSUlCSWpBTkJna3Foa2lHCjl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF1cC9ZSHhBeks5T2pkT2Z1ZkRyK3oyNUFOdTM2dDgvYW5mY2gKeThXclFIa0pOZWdWQU1IQ3l1d3RCUUJGZkxpQlljcG9hM2d5L2tFald2WVArcVV5TDh5THRaTzl1Z2dUK1NvdwpWZVBXb3ZxdzhIODhaRURCTno3cmt0TE0rVUlqYlVaY0ZBakduNyt1NVB2SkdjVDNWbXUyaXN2MUFIUWdwQjlvCnZEanMxY09KSElOVU1GajdHVWJRWHIxQlNlZVVwbUZhYlRrZWU1N0dIcW9Kb1MvbWxOV0I1ck5PQmJ4NWc3TGYKd0VLV0dHblZVSUErUHZ0LzFwTHZyd3V5NlhxUkhHODdSR0dRRkVmWjQwK1h2YktjRHoveHJMeVAybUR6bHR3Rgp2TVhncEl3YlJzUk9zQXdheDcyem9pblU0TDJCRGVlK1BScmp3OXFhaUM5V1cvelEvd0lEQVFBQm8xTXdVVEFkCkJnTlZIUTRFRmdRVThQVHZFd080OUswY2diT3FEd2pwazNHNDd3MHdId1lEVlIwakJCZ3dGb0FVOFBUdkV3TzQKOUswY2diT3FEd2pwazNHNDd3MHdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txaGtpRzl3MEJBUXNGQUFPQwpBUUVBb0lvbDRkSkNIVytRd0xYY0tDMzFGMFlBenIyZk5lSmpEWlNrR3dZL1I3TDdkVGZJcWNqUERSbGU2SVVJCnN5TTc2UUhVM1NBajZnRy9wMzFqWWtJSjFCT1c2WVRrbXllUzhuWHI3eW9wMGI3bEtNL3VWcjdDME9GUjRJNTcKZmxsU1Urb1RKanlURkg2dTBWaHhERExmUjl5UmtLdUhYTFlUY2YzVmNNM3BwVVhva3h0VklCMCtoejhzeHl2cApVUUxHLzlETFArVjJHN2c5QThBSHpwWGM5cmYvTGltZFo0N0NLeEtVM0RqNEVFanlFOEpOZkFlS1VaOTRweTh5CnFVTzM0LzVDa1JnRkx0bzJ5Vi9vdkI0bm01YURyWWQ5bjlDWnptVEJQWTBuNUFBU2drY2gvSXVjd1ZUc3FvaUgKeUhOOXRGbm1FY2wvdEtzbFdhenRmT3lDaUE9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+    server: https://192.168.0.111:16443
+  name: microk8s-cluster
+contexts:
+- context:
+    cluster: microk8s-cluster
+    user: admin
+  name: microk8s
+current-context: microk8s
+kind: Config
+preferences: {}
+users:
+- name: admin
+  user:
+    token: MW5XNzNaeC9vVTg4dUI2V0xWWGdJYUpKM2U1YWk2THk5R2dwaXpEV1RPaz0K
+yy@yy:~$
+yy@yy:~$
+yy@yy:~$
+yy@yy:~$ sudo microk8s.status
+microk8s is running
+high-availability: no
+  datastore master nodes: 127.0.0.1:19001
+  datastore standby nodes: none
+addons:
+  enabled:
+    dashboard            # The Kubernetes dashboard
+    dns                  # CoreDNS
+    ha-cluster           # Configure high availability on the current node
+    metrics-server       # K8s Metrics Server for API access to service metrics
+  disabled:
+    ambassador           # Ambassador API Gateway and Ingress
+    cilium               # SDN, fast with full network policy
+    fluentd              # Elasticsearch-Fluentd-Kibana logging and monitoring
+    gpu                  # Automatic enablement of Nvidia CUDA
+    helm                 # Helm 2 - the package manager for Kubernetes
+    helm3                # Helm 3 - Kubernetes package manager
+    host-access          # Allow Pods connecting to Host services smoothly
+    ingress              # Ingress controller for external access
+    istio                # Core Istio service mesh services
+    jaeger               # Kubernetes Jaeger operator with its simple config
+    keda                 # Kubernetes-based Event Driven Autoscaling
+    knative              # The Knative framework on Kubernetes.
+    kubeflow             # Kubeflow for easy ML deployments
+    linkerd              # Linkerd is a service mesh for Kubernetes and other frameworks
+    metallb              # Loadbalancer for your Kubernetes cluster
+    multus               # Multus CNI enables attaching multiple network interfaces to pods
+    openebs              # OpenEBS is the open-source storage solution for Kubernetes
+    openfaas             # openfaas serverless framework
+    portainer            # Portainer UI for your Kubernetes cluster
+    prometheus           # Prometheus operator for monitoring and logging
+    rbac                 # Role-Based Access Control for authorisation
+    registry             # Private image registry exposed on localhost:32000
+    storage              # Storage class; allocates storage from host directory
+    traefik              # traefik Ingress controller for external access
+yy@yy:~$ sudo microk8s.istioctl version
+Istio not available, try enabling is with 'microk8s enable istio'
+yy@yy:~$ sudo microk8s enable istio
+Enabling Istio
+Fetching istioctl version v1.5.1.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   630  100   630    0     0    875      0 --:--:-- --:--:-- --:--:--   873
+100 35.0M  100 35.0M    0     0  4436k      0  0:00:08  0:00:08 --:--:-- 5449k
+istio-1.5.1/
+istio-1.5.1/install/
+istio-1.5.1/install/consul/
+istio-1.5.1/install/consul/templates/
+istio-1.5.1/install/consul/README.md
+istio-1.5.1/install/consul/consul_config/
+istio-1.5.1/install/consul/consul_config/server.json
+istio-1.5.1/install/consul/consul_config/disable_update_check.json
+istio-1.5.1/install/consul/consul_config/agent-loglevel.json
+istio-1.5.1/install/consul/consul_config/agent.json
+istio-1.5.1/install/README.md
+istio-1.5.1/install/tools/
+istio-1.5.1/install/kubernetes/
+istio-1.5.1/install/kubernetes/mesh-expansion.yaml
+istio-1.5.1/install/kubernetes/global-default-sidecar-scope.yaml
+istio-1.5.1/install/kubernetes/istio-demo.yaml
+istio-1.5.1/install/kubernetes/README.md
+istio-1.5.1/install/kubernetes/operator/
+istio-1.5.1/install/kubernetes/operator/profiles/
+istio-1.5.1/install/kubernetes/operator/profiles/default.yaml
+istio-1.5.1/install/kubernetes/operator/profiles/demo.yaml
+istio-1.5.1/install/kubernetes/operator/profiles/empty.yaml
+istio-1.5.1/install/kubernetes/operator/profiles/minimal.yaml
+istio-1.5.1/install/kubernetes/operator/profiles/remote.yaml
+istio-1.5.1/install/kubernetes/operator/profiles/separate.yaml
+istio-1.5.1/install/kubernetes/operator/examples/
+istio-1.5.1/install/kubernetes/operator/examples/googleca/
+istio-1.5.1/install/kubernetes/operator/examples/googleca/values-istio-google-ca.yaml
+istio-1.5.1/install/kubernetes/operator/examples/user-gateway/
+istio-1.5.1/install/kubernetes/operator/examples/user-gateway/ingress-gateway-only.yaml
+istio-1.5.1/install/kubernetes/operator/examples/customresource/
+istio-1.5.1/install/kubernetes/operator/examples/customresource/istio_v1alpha1_istiooperator_cr.yaml
+istio-1.5.1/install/kubernetes/operator/examples/multicluster/
+istio-1.5.1/install/kubernetes/operator/examples/multicluster/values-istio-multicluster-gateways.yaml
+istio-1.5.1/install/kubernetes/operator/examples/multicluster/values-istio-multicluster-primary.yaml
+istio-1.5.1/install/kubernetes/operator/examples/vm/
+istio-1.5.1/install/kubernetes/operator/examples/vm/values-istio-meshexpansion-gateways.yaml
+istio-1.5.1/install/kubernetes/operator/examples/vm/values-istio-meshexpansion.yaml
+istio-1.5.1/install/kubernetes/operator/versions.yaml
+istio-1.5.1/install/kubernetes/operator/charts/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/demosecret.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/kiali/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/deployment-zipkin.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/deployment-opencensus.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/pvc.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/service-jaeger.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/deployment-jaeger.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/tracing/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/grafana-policy.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/pvc.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/tests/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/tests/test-grafana-connection.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/configmap-dashboards.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/mixer-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/istio-mesh-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/galley-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/istio-workload-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/istio-performance-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/pilot-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/citadel-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/dashboards/istio-service-dashboard.json
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/grafana/fix_datasources.sh
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/templates/prometheus.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/templates/servicemonitors.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus-operator/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/ingress.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/clusterrolebindings.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/tests/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/tests/test-prometheus-connection.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/prometheus/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/config.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/stackdriver.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/configmap-envoy.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-telemetry/mixer-telemetry/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/NOTES.txt
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/mutatingwebhook.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/sidecar-injector-configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/files/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-autoinject/files/injection-template.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/validatingwebhookconfiguration.yaml.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/validatingwebhookconfiguration.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/configmap-envoy.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/configmap-mesh.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/README.md
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-config/OWNERS
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/NOTES.txt
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/telemetryv2_1.5.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/mutatingwebhook.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/configmap-jwks.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/validatingwebhookconfiguration.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/telemetryv2_1.4.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/configmap-envoy.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/clusterrole-galley-disable-webhook.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/istiod-injector-configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/enable-mesh-mtls.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/files/
+istio-1.5.1/install/kubernetes/operator/charts/istio-control/istio-discovery/files/injection-template.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/NOTES.txt
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/security/citadel/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/templates/
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/templates/daemonset.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/security/nodeagent/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/
+istio-1.5.1/install/kubernetes/operator/charts/base/kustomization.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/services.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/crds.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/endpoints.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/templates/namespaces.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/files/
+istio-1.5.1/install/kubernetes/operator/charts/base/files/crd-all.gen.yaml
+istio-1.5.1/install/kubernetes/operator/charts/base/files/crd-mixer.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istiocoredns/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/NOTES.txt
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/certificate.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/sidecar.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/gateway.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/hosts.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/preconfigured.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/rolebindings.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/addongateway.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/role.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/templates/meshexpansion.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-ingress/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/NOTES.txt
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/preconfigured.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/gateways/istio-egress/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/templates/daemonset.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/templates/configmap-cni.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-cni/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/values.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/config.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/operator/charts/istio-policy/Chart.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/
+istio-1.5.1/install/kubernetes/operator/deploy/kustomization.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/operator.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/clusterrole_binding.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/crds/
+istio-1.5.1/install/kubernetes/operator/deploy/crds/istio_v1alpha1_istiooperator_crd.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/crds/istio_v1alpha1_istiooperator_cr.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/service.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/namespace.yaml
+istio-1.5.1/install/kubernetes/operator/deploy/service_account.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/crd.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/clusterrole_binding.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/service.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/namespace.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/templates/service_account.yaml
+istio-1.5.1/install/kubernetes/operator/operator-chart/Chart.yaml
+istio-1.5.1/install/kubernetes/namespace.yaml
+istio-1.5.1/install/kubernetes/helm/
+istio-1.5.1/install/kubernetes/helm/istio-init/
+istio-1.5.1/install/kubernetes/helm/istio-init/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/job-crd-certmanager-10.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/configmap-crd-all.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/job-crd-all.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/job-crd-certmanager-11.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/configmap-crd-mixer.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/job-crd-mixer.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/configmap-crd-certmanager-10.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/configmap-crd-certmanager-11.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/README.md
+istio-1.5.1/install/kubernetes/helm/istio-init/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/files/
+istio-1.5.1/install/kubernetes/helm/istio-init/files/crd-all.gen.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/files/crd-certmanager-11.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/files/crd-certmanager-10.yaml
+istio-1.5.1/install/kubernetes/helm/istio-init/files/crd-mixer.yaml
+istio-1.5.1/install/kubernetes/helm/README.md
+istio-1.5.1/install/kubernetes/helm/istio/
+istio-1.5.1/install/kubernetes/helm/istio/values-istio-remote.yaml
+istio-1.5.1/install/kubernetes/helm/istio/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/
+istio-1.5.1/install/kubernetes/helm/istio/templates/NOTES.txt
+istio-1.5.1/install/kubernetes/helm/istio/templates/install-custom-resources.sh.tpl
+istio-1.5.1/install/kubernetes/helm/istio/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/templates/_podDisruptionBudget.tpl
+istio-1.5.1/install/kubernetes/helm/istio/templates/endpoints.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/sidecar-injector-configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/helm/istio/README.md
+istio-1.5.1/install/kubernetes/helm/istio/example-values/
+istio-1.5.1/install/kubernetes/helm/istio/example-values/values-istio-meshexpansion-gateways.yaml
+istio-1.5.1/install/kubernetes/helm/istio/example-values/values-istio-googleca.yaml
+istio-1.5.1/install/kubernetes/helm/istio/example-values/README.md
+istio-1.5.1/install/kubernetes/helm/istio/example-values/values-istio-example-sds-vault.yaml
+istio-1.5.1/install/kubernetes/helm/istio/example-values/values-istio-multicluster-gateways.yaml
+istio-1.5.1/install/kubernetes/helm/istio/example-values/values-istio-gateways.yaml
+istio-1.5.1/install/kubernetes/helm/istio/example-values/values-istio-dns-cert.yaml
+istio-1.5.1/install/kubernetes/helm/istio/values-istio-sds-auth-control-plane-auth-disabled.yaml
+istio-1.5.1/install/kubernetes/helm/istio/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/requirements.yaml
+istio-1.5.1/install/kubernetes/helm/istio/values-istio-minimal.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/config.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/mixer/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/demosecret.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/ingress.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/tests/
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/tests/test-kiali-connection.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/kiali/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/deployment-zipkin.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/pvc.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/service-jaeger.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/deployment-jaeger.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/ingress.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/tests/
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/tests/test-tracing-connection.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/tracing/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/mutatingwebhook.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/sidecarInjectorWebhook/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/grafana-ports-mtls.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/create-custom-resources-job.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/pvc.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/ingress.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/tests/
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/tests/test-grafana-connection.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/configmap-dashboards.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/templates/configmap-custom-resources.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/mixer-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/istio-mesh-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/galley-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/istio-workload-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/istio-performance-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/pilot-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/citadel-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/dashboards/istio-service-dashboard.json
+istio-1.5.1/install/kubernetes/helm/istio/charts/grafana/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/create-custom-resources-job.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/tests/
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/tests/test-citadel-connection.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/enable-mesh-permissive.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/enable-mesh-mtls.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/templates/meshexpansion.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/security/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/istiocoredns/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/preconfigured.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/rolebindings.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/role.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/templates/_affinity.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/gateways/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/ingress.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/clusterrolebindings.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/tests/
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/tests/test-prometheus-connection.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/prometheus/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/autoscale.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/templates/meshexpansion.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/pilot/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/validatingwebhookconfiguration.yaml.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/validatingwebhookconfiguration.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/service.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/configmap.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/galley/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/NOTES.txt
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/poddisruptionbudget.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/rbac.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/deployment.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/templates/issuer.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/certmanager/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/templates/
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/templates/serviceaccount.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/templates/_helpers.tpl
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/templates/clusterrole.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/templates/daemonset.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/templates/clusterrolebinding.yaml
+istio-1.5.1/install/kubernetes/helm/istio/charts/nodeagent/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-auth-sds.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-mesh-networks.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-integ.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-mcp.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-one-namespace-auth.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-e2e.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-auth-multicluster.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-multicluster-split-horizon.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-auth.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/README.md
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-one-namespace-trust-domain.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-one-namespace.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-auth-mcp.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-multicluster.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-non-mcp.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-auth-non-mcp.yaml
+istio-1.5.1/install/kubernetes/helm/istio/test-values/values-istio-dns-cert.yaml
+istio-1.5.1/install/kubernetes/helm/istio/values-istio-sds-auth.yaml
+istio-1.5.1/install/kubernetes/helm/istio/files/
+istio-1.5.1/install/kubernetes/helm/istio/files/injection-template.yaml
+istio-1.5.1/install/kubernetes/helm/istio/values-istio-demo.yaml
+istio-1.5.1/install/kubernetes/helm/istio-cni/
+istio-1.5.1/install/kubernetes/helm/istio-cni/values.yaml
+istio-1.5.1/install/kubernetes/helm/istio-cni/templates/
+istio-1.5.1/install/kubernetes/helm/istio-cni/templates/_labels.tpl
+istio-1.5.1/install/kubernetes/helm/istio-cni/templates/istio-cni.yaml
+istio-1.5.1/install/kubernetes/helm/istio-cni/Chart.yaml
+istio-1.5.1/install/kubernetes/helm/istio-cni/values_gke.yaml
+istio-1.5.1/install/kubernetes/helm/helm-service-account.yaml
+istio-1.5.1/install/gcp/
+istio-1.5.1/install/gcp/bootstrap/
+istio-1.5.1/install/gcp/bootstrap/gcp_envoy_bootstrap.json
+istio-1.5.1/install/gcp/README.md
+istio-1.5.1/README.md
+istio-1.5.1/LICENSE
+istio-1.5.1/tools/
+istio-1.5.1/tools/convert_RbacConfig_to_ClusterRbacConfig.sh
+istio-1.5.1/tools/_istioctl
+istio-1.5.1/tools/dump_kubernetes.sh
+istio-1.5.1/tools/istioctl.bash
+istio-1.5.1/manifest.yaml
+istio-1.5.1/samples/
+istio-1.5.1/samples/sleep/
+istio-1.5.1/samples/sleep/telemetry/
+istio-1.5.1/samples/sleep/telemetry/sni-logging.yaml
+istio-1.5.1/samples/sleep/policy/
+istio-1.5.1/samples/sleep/policy/sni-wikipedia.yaml
+istio-1.5.1/samples/sleep/policy/sni-serviceaccount.yaml
+istio-1.5.1/samples/sleep/README.md
+istio-1.5.1/samples/sleep/sleep.yaml
+istio-1.5.1/samples/sleep/sleep-vault.yaml
+istio-1.5.1/samples/tcp-echo/
+istio-1.5.1/samples/tcp-echo/tcp-echo-services.yaml
+istio-1.5.1/samples/tcp-echo/README.md
+istio-1.5.1/samples/tcp-echo/tcp-echo.yaml
+istio-1.5.1/samples/tcp-echo/tcp-echo-20-v2.yaml
+istio-1.5.1/samples/tcp-echo/tcp-echo-all-v1.yaml
+istio-1.5.1/samples/tcp-echo/src/
+istio-1.5.1/samples/https/
+istio-1.5.1/samples/https/default.conf
+istio-1.5.1/samples/https/nginx-app.yaml
+istio-1.5.1/samples/README.md
+istio-1.5.1/samples/rawvm/
+istio-1.5.1/samples/rawvm/README.md
+istio-1.5.1/samples/operator/
+istio-1.5.1/samples/operator/default-install.yaml
+istio-1.5.1/samples/operator/sds.yaml
+istio-1.5.1/samples/operator/values-global.yaml
+istio-1.5.1/samples/operator/pilot-advanced-override.yaml
+istio-1.5.1/samples/operator/sds-policy-off.yaml
+istio-1.5.1/samples/operator/trafficManagement-namespace.yaml
+istio-1.5.1/samples/operator/pilot-k8s.yaml
+istio-1.5.1/samples/operator/values-pilot.yaml
+istio-1.5.1/samples/security/
+istio-1.5.1/samples/security/psp/
+istio-1.5.1/samples/security/psp/citadel-agent-psp.yaml
+istio-1.5.1/samples/security/psp/all-pods-psp.yaml
+istio-1.5.1/samples/certs/
+istio-1.5.1/samples/certs/ca-cert.pem
+istio-1.5.1/samples/certs/cert-chain.pem
+istio-1.5.1/samples/certs/README.md
+istio-1.5.1/samples/certs/root-cert.pem
+istio-1.5.1/samples/certs/ca-key.pem
+istio-1.5.1/samples/external/
+istio-1.5.1/samples/external/aptget.yaml
+istio-1.5.1/samples/external/README.md
+istio-1.5.1/samples/external/github.yaml
+istio-1.5.1/samples/external/pypi.yaml
+istio-1.5.1/samples/multicluster/
+istio-1.5.1/samples/multicluster/README.md
+istio-1.5.1/samples/fortio/
+istio-1.5.1/samples/fortio/stackdriver.yaml
+istio-1.5.1/samples/helloworld/
+istio-1.5.1/samples/helloworld/README.md
+istio-1.5.1/samples/helloworld/helloworld-gateway.yaml
+istio-1.5.1/samples/helloworld/helloworld.yaml
+istio-1.5.1/samples/helloworld/src/
+istio-1.5.1/samples/helloworld/src/requirements.txt
+istio-1.5.1/samples/health-check/
+istio-1.5.1/samples/health-check/liveness-command.yaml
+istio-1.5.1/samples/health-check/liveness-http.yaml
+istio-1.5.1/samples/health-check/liveness-http-same-port.yaml
+istio-1.5.1/samples/kubernetes-blog/
+istio-1.5.1/samples/kubernetes-blog/bookinfo-v1.yaml
+istio-1.5.1/samples/kubernetes-blog/bookinfo-reviews-v2.yaml
+istio-1.5.1/samples/kubernetes-blog/bookinfo-ratings.yaml
+istio-1.5.1/samples/websockets/
+istio-1.5.1/samples/websockets/README.md
+istio-1.5.1/samples/websockets/route.yaml
+istio-1.5.1/samples/websockets/app.yaml
+istio-1.5.1/samples/httpbin/
+istio-1.5.1/samples/httpbin/policy/
+istio-1.5.1/samples/httpbin/policy/keyval-template.yaml
+istio-1.5.1/samples/httpbin/policy/keyval.yaml
+istio-1.5.1/samples/httpbin/README.md
+istio-1.5.1/samples/httpbin/httpbin-vault.yaml
+istio-1.5.1/samples/httpbin/sample-client/
+istio-1.5.1/samples/httpbin/sample-client/fortio-deploy.yaml
+istio-1.5.1/samples/httpbin/httpbin-gateway.yaml
+istio-1.5.1/samples/httpbin/httpbin-nodeport.yaml
+istio-1.5.1/samples/httpbin/httpbin.yaml
+istio-1.5.1/samples/bookinfo/
+istio-1.5.1/samples/bookinfo/telemetry/
+istio-1.5.1/samples/bookinfo/telemetry/log-entry-crd.yaml
+istio-1.5.1/samples/bookinfo/telemetry/log-entry.yaml
+istio-1.5.1/samples/bookinfo/telemetry/tcp-metrics-crd.yaml
+istio-1.5.1/samples/bookinfo/telemetry/metrics.yaml
+istio-1.5.1/samples/bookinfo/telemetry/fluentd-istio.yaml
+istio-1.5.1/samples/bookinfo/telemetry/tcp-metrics.yaml
+istio-1.5.1/samples/bookinfo/telemetry/fluentd-istio-crd.yaml
+istio-1.5.1/samples/bookinfo/telemetry/metrics-crd.yaml
+istio-1.5.1/samples/bookinfo/platform/
+istio-1.5.1/samples/bookinfo/platform/consul/
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-all-v1.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-reviews-50-v3.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-ratings-test-abort.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/bookinfo.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/destination-rule-all.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/templates/
+istio-1.5.1/samples/bookinfo/platform/consul/README.md
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-reviews-v2-v3.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/cleanup.sh
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-ratings-test-delay.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-reviews-v3.yaml
+istio-1.5.1/samples/bookinfo/platform/consul/virtual-service-reviews-test-v2.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-ingress.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-details.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-details-v2.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/README.md
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/namespace-policy.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/details-reviews-policy.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/ratings-policy.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/rbac-permissive-telemetry.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/rbac-config-on-mongodb.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/details-reviews-policy-permissive.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/mongodb-policy.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/rbac-config-ON.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/productpage-policy.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/rbac/rbac-config-on-permissive.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-ratings-v2-mysql.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-ratings-v2-mysql-vm.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-certificate.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-reviews-v2.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/productpage-nodeport.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-db.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-ratings-discovery.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-ratings-v2.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-mysql.yaml
+istio-1.5.1/samples/bookinfo/platform/kube/cleanup.sh
+istio-1.5.1/samples/bookinfo/platform/kube/bookinfo-ratings.yaml
+istio-1.5.1/samples/bookinfo/policy/
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-ratings-redis-quota-fixed-window.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-kubernetesenv-telemetry.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-ingress-denial.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-productpage-redis-quota-fixed-window.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-ip-crd.yaml
+istio-1.5.1/samples/bookinfo/policy/prometheus-oop-rule.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-productpage-redis-quota-rolling-window.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-ratings-ratelimit.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-productpage-ratelimit-crd.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-ratings-denial.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-productpage-ratelimit.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-label.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-ratings-redis-quota-rolling-window.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-serviceaccount.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-label-crd.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-ip.yaml
+istio-1.5.1/samples/bookinfo/policy/prometheus-adapter-deployment.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-whitelist-crd.yaml
+istio-1.5.1/samples/bookinfo/policy/mixer-rule-deny-whitelist.yaml
+istio-1.5.1/samples/bookinfo/README.md
+istio-1.5.1/samples/bookinfo/networking/
+istio-1.5.1/samples/bookinfo/networking/virtual-service-all-v1.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-ratings-mysql.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-ratings-test-abort.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-80-20.yaml
+istio-1.5.1/samples/bookinfo/networking/certmanager-gateway.yaml
+istio-1.5.1/samples/bookinfo/networking/destination-rule-all.yaml
+istio-1.5.1/samples/bookinfo/networking/bookinfo-gateway.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-v2-v3.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-90-10.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-details-v2.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-ratings-mysql-vm.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-ratings-db.yaml
+istio-1.5.1/samples/bookinfo/networking/destination-rule-reviews.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml
+istio-1.5.1/samples/bookinfo/networking/destination-rule-all-mtls.yaml
+istio-1.5.1/samples/bookinfo/networking/egress-rule-google-apis.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-v3.yaml
+istio-1.5.1/samples/bookinfo/networking/fault-injection-details-v1.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
+istio-1.5.1/samples/bookinfo/networking/virtual-service-reviews-jason-v2-v3.yaml
+istio-1.5.1/samples/bookinfo/swagger.yaml
+istio-1.5.1/samples/bookinfo/src/
+istio-1.5.1/samples/bookinfo/src/mysql/
+istio-1.5.1/samples/bookinfo/src/ratings/
+istio-1.5.1/samples/bookinfo/src/ratings/package.json
+istio-1.5.1/samples/bookinfo/src/reviews/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/servers/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/servers/LibertyProjectServer/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/shared/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/src/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/src/test/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/src/test/java/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/src/test/java/it/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-wlpcfg/src/test/java/it/rest/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/test/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/test/java/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/test/java/test/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/main/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/main/java/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/main/java/application/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/main/java/application/rest/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/main/webapp/
+istio-1.5.1/samples/bookinfo/src/reviews/reviews-application/src/main/webapp/WEB-INF/
+istio-1.5.1/samples/bookinfo/src/details/
+istio-1.5.1/samples/bookinfo/src/mongodb/
+istio-1.5.1/samples/bookinfo/src/mongodb/ratings_data.json
+istio-1.5.1/samples/bookinfo/src/productpage/
+istio-1.5.1/samples/bookinfo/src/productpage/templates/
+istio-1.5.1/samples/bookinfo/src/productpage/static/
+istio-1.5.1/samples/bookinfo/src/productpage/static/bootstrap/
+istio-1.5.1/samples/bookinfo/src/productpage/static/bootstrap/fonts/
+istio-1.5.1/samples/bookinfo/src/productpage/static/bootstrap/js/
+istio-1.5.1/samples/bookinfo/src/productpage/static/bootstrap/css/
+istio-1.5.1/samples/bookinfo/src/productpage/requirements.txt
+istio-1.5.1/samples/bookinfo/src/productpage/tests/
+istio-1.5.1/samples/bookinfo/src/productpage/tests/unit/
+istio-1.5.1/samples/bookinfo/src/productpage/test-requirements.txt
+istio-1.5.1/samples/custom-bootstrap/
+istio-1.5.1/samples/custom-bootstrap/example-app.yaml
+istio-1.5.1/samples/custom-bootstrap/README.md
+istio-1.5.1/samples/custom-bootstrap/custom-bootstrap.yaml
+istio-1.5.1/bin/
+istio-1.5.1/bin/istioctl
+Addon dns is already enabled.
+Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+customresourcedefinition.apiextensions.k8s.io/meshpolicies.authentication.istio.io created
+customresourcedefinition.apiextensions.k8s.io/policies.authentication.istio.io created
+customresourcedefinition.apiextensions.k8s.io/httpapispecs.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/httpapispecbindings.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/quotaspecs.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/quotaspecbindings.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/destinationrules.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/envoyfilters.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/gateways.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/serviceentries.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/sidecars.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/virtualservices.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/attributemanifests.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/handlers.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/instances.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/rules.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/clusterrbacconfigs.rbac.istio.io created
+customresourcedefinition.apiextensions.k8s.io/rbacconfigs.rbac.istio.io created
+customresourcedefinition.apiextensions.k8s.io/serviceroles.rbac.istio.io created
+customresourcedefinition.apiextensions.k8s.io/servicerolebindings.rbac.istio.io created
+customresourcedefinition.apiextensions.k8s.io/authorizationpolicies.security.istio.io created
+customresourcedefinition.apiextensions.k8s.io/peerauthentications.security.istio.io created
+customresourcedefinition.apiextensions.k8s.io/requestauthentications.security.istio.io created
+Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/issuers.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/certificates.certmanager.k8s.io created
+Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+customresourcedefinition.apiextensions.k8s.io/orders.certmanager.k8s.io created
+customresourcedefinition.apiextensions.k8s.io/challenges.certmanager.k8s.io created
+Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+customresourcedefinition.apiextensions.k8s.io/adapters.config.istio.io created
+customresourcedefinition.apiextensions.k8s.io/templates.config.istio.io created
+namespace/istio-system created
+Warning: apiextensions.k8s.io/v1beta1 CustomResourceDefinition is deprecated in v1.16+, unavailable in v1.22+; use apiextensions.k8s.io/v1 CustomResourceDefinition
+customresourcedefinition.apiextensions.k8s.io/meshpolicies.authentication.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/policies.authentication.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/httpapispecs.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/httpapispecbindings.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/quotaspecs.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/quotaspecbindings.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/destinationrules.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/envoyfilters.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/gateways.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/serviceentries.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/sidecars.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/virtualservices.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/attributemanifests.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/handlers.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/instances.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/rules.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/clusterrbacconfigs.rbac.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/rbacconfigs.rbac.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/serviceroles.rbac.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/servicerolebindings.rbac.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/authorizationpolicies.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/peerauthentications.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/requestauthentications.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.certmanager.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/issuers.certmanager.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/certificates.certmanager.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/orders.certmanager.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/challenges.certmanager.k8s.io unchanged
+customresourcedefinition.apiextensions.k8s.io/adapters.config.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/templates.config.istio.io unchanged
+Warning: policy/v1beta1 PodDisruptionBudget is deprecated in v1.21+, unavailable in v1.25+; use policy/v1 PodDisruptionBudget
+poddisruptionbudget.policy/istio-galley created
+poddisruptionbudget.policy/istio-egressgateway created
+poddisruptionbudget.policy/istio-ingressgateway created
+poddisruptionbudget.policy/istio-policy created
+poddisruptionbudget.policy/istio-telemetry created
+poddisruptionbudget.policy/istio-pilot created
+poddisruptionbudget.policy/istio-citadel created
+poddisruptionbudget.policy/istio-sidecar-injector created
+secret/kiali created
+configmap/istio-galley-configuration created
+configmap/istio-grafana-custom-resources created
+configmap/istio-grafana-configuration-dashboards-citadel-dashboard created
+configmap/istio-grafana-configuration-dashboards-galley-dashboard created
+configmap/istio-grafana-configuration-dashboards-istio-mesh-dashboard created
+configmap/istio-grafana-configuration-dashboards-istio-performance-dashboard created
+configmap/istio-grafana-configuration-dashboards-istio-service-dashboard created
+configmap/istio-grafana-configuration-dashboards-istio-workload-dashboard created
+configmap/istio-grafana-configuration-dashboards-mixer-dashboard created
+configmap/istio-grafana-configuration-dashboards-pilot-dashboard created
+configmap/istio-grafana created
+configmap/kiali created
+configmap/prometheus created
+configmap/istio-security-custom-resources created
+configmap/istio created
+configmap/istio-sidecar-injector created
+serviceaccount/istio-galley-service-account created
+serviceaccount/istio-egressgateway-service-account created
+serviceaccount/istio-ingressgateway-service-account created
+serviceaccount/istio-grafana-post-install-account created
+clusterrole.rbac.authorization.k8s.io/istio-grafana-post-install-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-grafana-post-install-role-binding-istio-system created
+job.batch/istio-grafana-post-install-1.5.1 created
+serviceaccount/kiali-service-account created
+serviceaccount/istio-mixer-service-account created
+serviceaccount/istio-pilot-service-account created
+serviceaccount/prometheus created
+serviceaccount/istio-security-post-install-account created
+clusterrole.rbac.authorization.k8s.io/istio-security-post-install-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-security-post-install-role-binding-istio-system created
+job.batch/istio-security-post-install-1.5.1 created
+serviceaccount/istio-citadel-service-account created
+serviceaccount/istio-sidecar-injector-service-account created
+serviceaccount/istio-multi created
+serviceaccount/istio-reader-service-account created
+clusterrole.rbac.authorization.k8s.io/istio-galley-istio-system created
+clusterrole.rbac.authorization.k8s.io/kiali created
+clusterrole.rbac.authorization.k8s.io/kiali-viewer created
+clusterrole.rbac.authorization.k8s.io/istio-mixer-istio-system created
+clusterrole.rbac.authorization.k8s.io/istio-pilot-istio-system created
+clusterrole.rbac.authorization.k8s.io/prometheus-istio-system created
+clusterrole.rbac.authorization.k8s.io/istio-citadel-istio-system created
+clusterrole.rbac.authorization.k8s.io/istio-sidecar-injector-istio-system created
+clusterrole.rbac.authorization.k8s.io/istio-reader created
+clusterrolebinding.rbac.authorization.k8s.io/istio-galley-admin-role-binding-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-kiali-admin-role-binding-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-mixer-admin-role-binding-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-pilot-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/prometheus-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-citadel-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-sidecar-injector-admin-role-binding-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-multi created
+clusterrolebinding.rbac.authorization.k8s.io/istio-reader created
+service/istio-galley created
+service/istio-egressgateway created
+service/istio-ingressgateway created
+service/grafana created
+service/kiali created
+service/istio-policy created
+service/istio-telemetry created
+service/istio-pilot created
+service/prometheus created
+service/istio-citadel created
+service/istio-sidecar-injector created
+deployment.apps/istio-galley created
+deployment.apps/istio-egressgateway created
+deployment.apps/istio-ingressgateway created
+deployment.apps/grafana created
+deployment.apps/kiali created
+deployment.apps/istio-policy created
+deployment.apps/istio-telemetry created
+deployment.apps/istio-pilot created
+deployment.apps/prometheus created
+deployment.apps/istio-citadel created
+deployment.apps/istio-sidecar-injector created
+deployment.apps/istio-tracing created
+service/jaeger-query created
+service/jaeger-collector created
+service/jaeger-collector-headless created
+service/jaeger-agent created
+service/zipkin created
+service/tracing created
+Warning: admissionregistration.k8s.io/v1beta1 MutatingWebhookConfiguration is deprecated in v1.16+, unavailable in v1.22+; use admissionregistration.k8s.io/v1 MutatingWebhookConfiguration
+mutatingwebhookconfiguration.admissionregistration.k8s.io/istio-sidecar-injector created
+Warning: admissionregistration.k8s.io/v1beta1 ValidatingWebhookConfiguration is deprecated in v1.16+, unavailable in v1.22+; use admissionregistration.k8s.io/v1 ValidatingWebhookConfiguration
+validatingwebhookconfiguration.admissionregistration.k8s.io/istio-galley created
+attributemanifest.config.istio.io/istioproxy created
+attributemanifest.config.istio.io/kubernetes created
+handler.config.istio.io/stdio created
+instance.config.istio.io/accesslog created
+instance.config.istio.io/tcpaccesslog created
+rule.config.istio.io/stdio created
+rule.config.istio.io/stdiotcp created
+instance.config.istio.io/requestcount created
+instance.config.istio.io/requestduration created
+instance.config.istio.io/requestsize created
+instance.config.istio.io/responsesize created
+instance.config.istio.io/tcpbytesent created
+instance.config.istio.io/tcpbytereceived created
+instance.config.istio.io/tcpconnectionsopened created
+instance.config.istio.io/tcpconnectionsclosed created
+handler.config.istio.io/prometheus created
+rule.config.istio.io/promhttp created
+rule.config.istio.io/promtcp created
+rule.config.istio.io/promtcpconnectionopen created
+rule.config.istio.io/promtcpconnectionclosed created
+handler.config.istio.io/kubernetesenv created
+rule.config.istio.io/kubeattrgenrulerule created
+rule.config.istio.io/tcpkubeattrgenrulerule created
+instance.config.istio.io/attributes created
+destinationrule.networking.istio.io/istio-policy created
+destinationrule.networking.istio.io/istio-telemetry created
+--allow-privileged=true
+Istio is starting
+
+To configure mutual TLS authentication consult the Istio documentation.
+yy@yy:~$ sudo microk8s istioctl dashboard kiali
+Error: could not build port forwarder for Kiali: pod is not running. Status=Pending
+yy@yy:~$ sudo microk8s.kubectl get svc -n istio-system
+NAME                        TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                                                                                      AGE
+istio-galley                ClusterIP      10.152.183.27    <none>        443/TCP,15014/TCP,9901/TCP                                                                                                                   2m34s
+istio-egressgateway         ClusterIP      10.152.183.110   <none>        80/TCP,443/TCP,15443/TCP                                                                                                                     2m34s
+istio-ingressgateway        LoadBalancer   10.152.183.107   <pending>     15020:30386/TCP,80:31380/TCP,443:31390/TCP,31400:31400/TCP,15029:32408/TCP,15030:31610/TCP,15031:31460/TCP,15032:31989/TCP,15443:30724/TCP   2m33s
+grafana                     ClusterIP      10.152.183.165   <none>        3000/TCP                                                                                                                                     2m33s
+kiali                       ClusterIP      10.152.183.176   <none>        20001/TCP                                                                                                                                    2m33s
+istio-policy                ClusterIP      10.152.183.54    <none>        9091/TCP,15004/TCP,15014/TCP                                                                                                                 2m32s
+istio-telemetry             ClusterIP      10.152.183.250   <none>        9091/TCP,15004/TCP,15014/TCP,42422/TCP                                                                                                       2m32s
+istio-pilot                 ClusterIP      10.152.183.38    <none>        15010/TCP,15011/TCP,8080/TCP,15014/TCP                                                                                                       2m32s
+prometheus                  ClusterIP      10.152.183.166   <none>        9090/TCP                                                                                                                                     2m32s
+istio-citadel               ClusterIP      10.152.183.241   <none>        8060/TCP,15014/TCP                                                                                                                           2m32s
+istio-sidecar-injector      ClusterIP      10.152.183.122   <none>        443/TCP,15014/TCP                                                                                                                            2m32s
+jaeger-query                ClusterIP      10.152.183.217   <none>        16686/TCP                                                                                                                                    2m21s
+jaeger-collector            ClusterIP      10.152.183.53    <none>        14267/TCP,14268/TCP,14250/TCP                                                                                                                2m17s
+jaeger-collector-headless   ClusterIP      None             <none>        14250/TCP                                                                                                                                    2m15s
+jaeger-agent                ClusterIP      None             <none>        5775/UDP,6831/UDP,6832/UDP                                                                                                                   2m14s
+zipkin                      ClusterIP      10.152.183.226   <none>        9411/TCP                                                                                                                                     2m13s
+tracing                     ClusterIP      10.152.183.2     <none>        80/TCP                                                                                                                                       2m11s
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"kiali","namespace":"istio-system"},"spec":{"ports":[{"name":"http-kiali","port":20001,"protocol":"TCP"}],"selector":{"app":"kiali"}}}
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+"/tmp/kubectl-edit-ovjbk.yaml" 39L, 1207C                     1,1           Top
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"kiali","namespace":"istio-system"},"spec":{"ports":[{"name":"http-kiali","port":20001,"protocol":"TCP"}],"selector":{"app":"kiali"}}}
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+"/tmp/kubectl-edit-ovjbk.yaml" 39L, 1207C                     1,1           Top
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"kiali","namespace":"istio-system"},"spec":{"ports":[{"name":"http-kiali","port":20001,"protocol":"TCP"}],"selector":{"app":"kiali"}}}
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+"/tmp/kubectl-edit-ovjbk.yaml" 39L, 1207C                     1,1           Top
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"kiali","namespace":"istio-system"},"spec":{"ports":[{"name":"http-kiali","port":20001,"protocol":"TCP"}],"selector":{"app":"kiali"}}}
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+  selfLink: /api/v1/namespaces/istio-system/services/kiali
+  uid: 254d0d77-272d-4f6d-8e24-6c4d16587622
+spec:
+  clusterIP: 10.152.183.176
+  clusterIPs:
+  - 10.152.183.176
+                                                                                                                                       2m32s
+istio-sidecar-injector      ClusterIP      10.152.183.122   <none>        443/TCP,15014/TCP                                                                                                                            2m32s
+jaeger-query                ClusterIP      10.152.183.217   <none>        16686/TCP                                                                                                                                    2m21s
+jaeger-collector            ClusterIP      10.152.183.53    <none>        14267/TCP,14268/TCP,14250/TCP                                                                                                                2m17s
+jaeger-collector-headless   ClusterIP      None             <none>        14250/TCP                                                                                                                                    2m15s
+jaeger-agent                ClusterIP      None             <none>        5775/UDP,6831/UDP,6832/UDP                                                                                                                   2m14s
+zipkin                      ClusterIP      10.152.183.226   <none>        9411/TCP                                                                                                                                     2m13s
+tracing                     ClusterIP      10.152.183.2     <none>        80/TCP                                                                                                                                       2m11s
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+Edit cancelled, no changes made.
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+"/tmp/kubectl-edit-q3xch.yaml" 39L, 1207C
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"kiali","namespace":"istio-system"},"spec":{"ports":[{"name":"http-kiali","port":20001,"protocol":"TCP"}],"selector":{"app":"kiali"}}}
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+"/tmp/kubectl-edit-q3xch.yaml" 39L, 1207C
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"labels":{"app":"kiali","chart":"kiali","heritage":"Tiller","release":"istio"},"name":"kiali","namespace":"istio-system"},"spec":{"ports":[{"name":"http-kiali","port":20001,"protocol":"TCP"}],"selector":{"app":"kiali"}}}
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+"/tmp/kubectl-edit-q3xch.yaml" 39L, 1207C
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+  creationTimestamp: "2021-10-03T11:25:15Z"
+  labels:
+    app: kiali
+    chart: kiali
+    heritage: Tiller
+    release: istio
+  name: kiali
+  namespace: istio-system
+  resourceVersion: "2859"
+  selfLink: /api/v1/namespaces/istio-system/services/kiali
+  uid: 254d0d77-272d-4f6d-8e24-6c4d16587622
+spec:
+  clusterIP: 10.152.183.176
+  clusterIPs:
+  - 10.152.183.176
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http-kiali
+    port: 20001
+    protocol: TCP
+    targetPort: 20001
+  selector:
+    app: kiali
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
+"/tmp/kubectl-edit-q3xch.yaml" 39L, 1206C written
+                                                                                P,15014/TCP                                                                                                                            2m32s
+jaeger-query                ClusterIP      10.152.183.217   <none>        16686/TCP                                                                                                                                    2m21s
+jaeger-collector            ClusterIP      10.152.183.53    <none>        14267/TCP,14268/TCP,14250/TCP                                                                                                                2m17s
+jaeger-collector-headless   ClusterIP      None             <none>        14250/TCP                                                                                                                                    2m15s
+jaeger-agent                ClusterIP      None             <none>        5775/UDP,6831/UDP,6832/UDP                                                                                                                   2m14s
+zipkin                      ClusterIP      10.152.183.226   <none>        9411/TCP                                                                                                                                     2m13s
+tracing                     ClusterIP      10.152.183.2     <none>        80/TCP                                                                                                                                       2m11s
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+Edit cancelled, no changes made.
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+service/kiali edited
+yy@yy:~$ microk8s.kubectl get svc kiali -n istio-system
+NAME    TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
+kiali   NodePort   10.152.183.176   <none>        20001:30682/TCP   6m32s
+yy@yy:~$ microk8s.kubectl create ns istio-app
+namespace/istio-app created
+yy@yy:~$ microk8s.kubectl label ns istio-app istio-injection=enabled
+namespace/istio-app labeled
+yy@yy:~$  microk8s.kubectl get ns -L istio-injection
+NAME              STATUS   AGE   ISTIO-INJECTION
+kube-system       Active   23h
+kube-public       Active   23h
+kube-node-lease   Active   23h
+default           Active   23h
+istio-system      Active   17m   disabled
+istio-app         Active   31s   enabled
+yy@yy:~$ sudo vim Hello A
+2 files to edit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"Hello" [New File]                                            0,0-1         All
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"Hello" [New File]                                            0,0-1         All
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"Hello" [New File]                                            0,0-1         All
+^?^[[200~package main
+import (
+    "log"
+    "net/http"
+)
+func main() {
+    //templatesフォルダ配下を読み込む
+    http.Handle("/", http.FileServer(http.Dir("templates")))
+    //サーバー起動
+    if err := http.ListenAndServe(":8080", nil); err != nil {
+        log.Fatal("ListenAndServe:", nil)
+    }
+package main
+import (
+package main
+import (
+    "log"
+    "net/http"
+)
+func main() {
+    //templatesフォルダ配下を読み込む
+    http.Handle("/", http.FileServer(http.Dir("templates")))
+    //サーバー起動
+    if err := http.ListenAndServe(":8080", nil); err != nil {
+        log.Fatal("ListenAndServe:", nil)
+    }
+}
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+"Hello" 13L, 310C written
+                                                                                                                                                                                                                       2m11s
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+Edit cancelled, no changes made.
+yy@yy:~$ sudo microk8s.kubectl edit svc kiali -n istio-system
+service/kiali edited
+yy@yy:~$ microk8s.kubectl get svc kiali -n istio-system
+NAME    TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)           AGE
+kiali   NodePort   10.152.183.176   <none>        20001:30682/TCP   6m32s
+yy@yy:~$ microk8s.kubectl create ns istio-app
+namespace/istio-app created
+yy@yy:~$ microk8s.kubectl label ns istio-app istio-injection=enabled
+namespace/istio-app labeled
+yy@yy:~$  microk8s.kubectl get ns -L istio-injection
+NAME              STATUS   AGE   ISTIO-INJECTION
+kube-system       Active   23h
+kube-public       Active   23h
+kube-node-lease   Active   23h
+default           Active   23h
+istio-system      Active   17m   disabled
+istio-app         Active   31s   enabled
+yy@yy:~$ sudo vim Hello A
+2 files to edit
+yy@yy:~$ ll
+total 48
+drwxr-xr-x 6 yy   yy   4096 Oct  3 11:45 ./
+drwxr-xr-x 3 root root 4096 Oct  2 12:13 ../
+-rw------- 1 yy   yy   1024 Oct  2 12:36 .bash_history
+-rw-r--r-- 1 yy   yy    220 Apr  4  2018 .bash_logout
+-rw-r--r-- 1 yy   yy   3771 Apr  4  2018 .bashrc
+drwx------ 2 yy   yy   4096 Oct  2 12:14 .cache/
+drwx------ 3 yy   yy   4096 Oct  2 12:14 .gnupg/
+-rw-r--r-- 1 root root  310 Oct  3 11:45 Hello
+drwxr-x--- 3 yy   yy   4096 Oct  2 12:38 .kube/
+-rw-r--r-- 1 yy   yy    807 Apr  4  2018 .profile
+drwxr-xr-x 3 yy   yy   4096 Oct  2 12:34 snap/
+-rw-r--r-- 1 yy   yy      0 Oct  2 12:18 .sudo_as_admin_successful
+-rw------- 1 root root 3258 Oct  3 11:45 .viminfo
+yy@yy:~$
