@@ -1,0 +1,40 @@
+目的
+・ローカルのwin10端末のターミナルソフトを利用し、GCPのVMインスタンスにSSH接続する。
+前提
+・GCPにVMインスタンスが構築されていること。
+・win10端末内にGitBashがインストールされていること。
+・Teratermやputtyなどのターミナルソフトがインストールされていること。
+参考
+・https://www.lisz-works.com/entry/ssh-connect-gce-vm#SSH%E9%8D%B5%E3%82%92%E4%BD%9C%E6%88%90
+
+1.sshキーの作成
+
+GitBashを開いて以下のコマンドを入力し、エンター
+
+ssh-keygen -t rsa -f ~/.ssh/<SSH鍵名> -C <ユーザー名>
+
+「例」
+ssh-keygen -t rsa -f ~/.ssh/gcp-key -C lis
+
+パスワードを2回入力。
+
+2.Compute Engineにsshキーを登録する。
+ComputeEngine→メタデータ→SSH認証鍵→編集→
+開いたテキストエリア内に、作成したsshキーの中身をコピペする。
+→保存
+
+3.sshポート番号の変更（任意、しかし推奨）
+Vmインスタンス→ファイアーウォールのルール
+→default-allow-ssh→編集
+→ tcpのポート番号を任意の番号に変更
+→保存
+
+4.sshdの再起動
+コンソールボタン→コマンド入力（sudo service ssh restart）
+
+5.接続
+Teratermなどを開き、ユーザー名、パスワードを入力。
+RSA/DSAキーを使うの項目で、ローカルに保存されている
+sshキー（.pub）を選択し、OK
+
+VMインスタンスにssh接続可能
