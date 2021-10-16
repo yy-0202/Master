@@ -1,0 +1,128 @@
+目的
+　Rocky Linux8.4内にWordPressを導入する。
+前提
+・Google CloudのVMインスタンスを使用する。
+・インスタンスは、Rocky Linux8.4を使用する。
+・サーバーのスペックは以下の通りである。
+マシンタイプ:e2-medium(vCPUx2, メモリ4GB)
+ゾーン:us-west-1b
+・ローカルのWin10端末からインスタンスに対してssh
+接続し、作業を実施する。
+・アップデート及びアップグレード済みであること。
+
+1.Apacheのインストール
+apacheをインストールする。
+$ sudo dnf -y install httpd
+
+下記ファイルを編集する。
+$ sudo vim /etc/httpd/conf/httpd.conf
+
+以下の行をコメントアウトする。
+#ServerName www.example.com:80
+↓
+ServerName www.example.com:80
+
+HTTPポートのファイアーウォール許可
+$ sudo firewall-cmd --permanent --add-service=http
+$ sudo firewall-cmd --reload
+
+Apacheの起動
+$ sudo systemctl start httpd
+$ sudo systemctl enable httpd
+
+この時点で、http://webサーバーのIPアドレス/
+をブラウザのアドレスバーに入力するとテストページが表示される。
+
+2.MariaDBのインストール
+MariaDBのインストール
+$ sudo dnf -y install mariadb-server mariadb
+
+以下のファイルを編集する。
+$ sudo vim /etc/my.cnf.d/mariadb-server.cnf
+[mysqld]の最後の行にcharacter-set-server=utf8を追加する。
+
+$ sudo vim /etc/my.cnf.d/client.cnf
+[client]の最後の行にdefault-character-set=utf8を追加する。
+
+MariaDBの起動
+$ sudo systemctl start mariadb
+$ sudo systemctl enable mariadb
+
+MariaDBの設定
+$ sudo mysql_secure_installation
+Set root password? [Y/n] y
+New password:
+Re-enter new password:
+Remove anonymous users? [Y/n] y
+Disallow root login remotely? [Y/n] y
+Remove test database and access to it? [Y/n] y
+Reload privilege tables now? [Y/n] y
+
+$ mysql -u root -p
+Enter password:
+
+MariaDB [(none)]> create database (DB名);
+MariaDB [(none)]> grant all privileges on (DB名).* to "(ユーザー名)"@"localhost" identified by "(パスワード)";
+MariaDB [(none)]> flush privileges;
+MariaDB [(none)]> exit
+
+
+3.PHPのインストール
+$ sudo dnf -y module install php:7.4
+$ sudo dnf -y install php php-mbstring php-pear php-mysqlnd php-gd php-pecl-zip php-json
+
+Apacheの再起動
+$ sudo systemctl restart httpd
+
+PHPの確認
+$ sudo vim /var/www/html/index.php
+以下を追記
+<?php echo  phpinfo(); ?>
+
+http://webサーバーのIPアドレス/index.phpをブラウザに入力するとPHPの
+ページが表示される。
+
+PHPページの削除
+$ sudo rm /var/www/html/index.php 
+
+4.WordPressインストール
+WordPressのインストール
+$ curl -LO http:/ja.wordpress.org/latest-ja.tar.gz
+
+解凍
+$ tar xvf latest-ja.tar.gz
+
+移動
+$ sudo mv wordpress /var/www/html/wordpress
+
+コピー
+$ sudo chown -R apache:apache /var/www/html/wordpress/
+$ cd /var/www/html/wordpress/
+$ sudo mv wp-config-sample.php wp-config.php
+
+設定ファイルの変更
+$ sudo vim wp-config.php
+DB名変更
+define( 'DB_NAME', 'database_name_here' );　
+DBユーザー名変更
+define( 'DB_USER', 'username_here' );　
+DBパスワード変更
+define( 'DB_PASSWORD', 'password_here' );　
+
+権限変更
+$ sudo chmod 400 wp-config.php 
+
+SELINUXの変更
+$ sudo setsebool -P httpd_dbus_avahi 1
+$ sudo setsebool -P httpd_unified 1
+$ sudo setsebool -P httpd_tty_comm 1
+$ sudo setsebool -P httpd_can_network_connect_db 1
+$ sudo semanage fcontext -a -t httpd_sys_content_t "/var/www/html/wordpress"
+$ sudo semanage fcontext -a -t httpd_sys_rw_content_t "/var/www/html/wordpress/wp-content(/.*)?"
+$ sudo restorecon -R -v /var/www/html/wordpress
+
+ブラウザで以下を入力
+http://webサーバーのIPアドレス/wordpress/wp-admin/install.php
+
+ブラウザのページで必要事項を記入し、インストールする。
+ログイン可能
