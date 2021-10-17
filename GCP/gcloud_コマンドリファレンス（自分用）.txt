@@ -1,0 +1,27 @@
+GCP
+CloudShellでよく使用するコマンド
+
+GCEログイン
+gcloud auth login
+
+プロジェクト確認
+sudo config list
+
+インスタンス一覧
+gcloud compute instances list
+
+ssh接続（ゾーンは省略可）
+gcloud compute ssh インスタンス名 --zone ゾーン名
+
+
+
+コンポーネント関連
+gcloud components install
+gcloud components list
+gcloud components update
+
+リージョン設定
+gcloud config set compute/zone us-central1-a
+gcloud config set compute/region us-central1
+
+
