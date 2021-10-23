@@ -1,0 +1,14 @@
+
+・SQL攻略（http://sql.main.jp/）
+SQLの基本から正規化などまで学ぶことができる。
+説明文の後に、実際に手を動かしながら問題を解くことのできる
+実習がついている。
+
+・SQLBolt（https://sqlbolt.com/）
+海外のSQL練習サイト。実際に手を動かしながらSQLについて
+学ぶことができる。
+
+・TECHPROjin（https://tech.pjin.jp/blog/tag/sql%E7%B7%B4%E7%BF%92%E5%95%8F%E9%A1%8C/）
+70以上の演習問題が掲載されている。問題で使用するデータが
+ダウンロードできる。
+
