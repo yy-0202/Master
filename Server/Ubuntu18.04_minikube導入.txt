@@ -1,0 +1,184 @@
+
+yy@yy:~$ sudo su -
+[sudo] password for yy:
+root@yy:~#
+root@yy:~#
+root@yy:~#
+root@yy:~# apt -y install docker.io conntrack
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  bridge-utils containerd pigz runc ubuntu-fan
+Suggested packages:
+  ifupdown aufs-tools cgroupfs-mount | cgroup-lite debootstrap docker-doc
+  rinse zfs-fuse | zfsutils
+The following NEW packages will be installed:
+  bridge-utils conntrack containerd docker.io pigz runc ubuntu-fan
+0 upgraded, 7 newly installed, 0 to remove and 0 not upgraded.
+Need to get 74.2 MB of archives.
+After this operation, 360 MB of additional disk space will be used.
+Get:1 http://jp.archive.ubuntu.com/ubuntu bionic/universe amd64 pigz amd64 2.4-1 [57.4 kB]
+Get:2 http://jp.archive.ubuntu.com/ubuntu bionic/main amd64 bridge-utils amd64 1.5-15ubuntu1 [30.1 kB]
+Get:3 http://jp.archive.ubuntu.com/ubuntu bionic/main amd64 conntrack amd64 1:1.4.4+snapshot20161117-6ubuntu2 [30.6 kB]
+Get:4 http://jp.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 runc amd64 1.0.1-0ubuntu2~18.04.1 [4,155 kB]
+Get:5 http://jp.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 containerd amd64 1.5.5-0ubuntu3~18.04.1 [33.0 MB]
+Get:6 http://jp.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 docker.io amd64 20.10.7-0ubuntu5~18.04.3 [36.9 MB]
+Get:7 http://jp.archive.ubuntu.com/ubuntu bionic/main amd64 ubuntu-fan all 0.12.10 [34.7 kB]
+Fetched 74.2 MB in 18s (4,197 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package pigz.
+(Reading database ... 67384 files and directories currently installed.)
+Preparing to unpack .../0-pigz_2.4-1_amd64.deb ...
+Unpacking pigz (2.4-1) ...
+Selecting previously unselected package bridge-utils.
+Preparing to unpack .../1-bridge-utils_1.5-15ubuntu1_amd64.deb ...
+Unpacking bridge-utils (1.5-15ubuntu1) ...
+Selecting previously unselected package conntrack.
+Preparing to unpack .../2-conntrack_1%3a1.4.4+snapshot20161117-6ubuntu2_amd64.deb ...
+Unpacking conntrack (1:1.4.4+snapshot20161117-6ubuntu2) ...
+Selecting previously unselected package runc.
+Preparing to unpack .../3-runc_1.0.1-0ubuntu2~18.04.1_amd64.deb ...
+Unpacking runc (1.0.1-0ubuntu2~18.04.1) ...
+Selecting previously unselected package containerd.
+Preparing to unpack .../4-containerd_1.5.5-0ubuntu3~18.04.1_amd64.deb ...
+Unpacking containerd (1.5.5-0ubuntu3~18.04.1) ...
+Selecting previously unselected package docker.io.
+Preparing to unpack .../5-docker.io_20.10.7-0ubuntu5~18.04.3_amd64.deb ...
+Unpacking docker.io (20.10.7-0ubuntu5~18.04.3) ...
+Selecting previously unselected package ubuntu-fan.
+Preparing to unpack .../6-ubuntu-fan_0.12.10_all.deb ...
+Unpacking ubuntu-fan (0.12.10) ...
+Setting up conntrack (1:1.4.4+snapshot20161117-6ubuntu2) ...
+Setting up runc (1.0.1-0ubuntu2~18.04.1) ...
+Setting up containerd (1.5.5-0ubuntu3~18.04.1) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service  → /lib/systemd/system/containerd.service.
+/usr/sbin/policy-rc.d returned 101, not running 'start containerd.service'
+Setting up bridge-utils (1.5-15ubuntu1) ...
+Setting up ubuntu-fan (0.12.10) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/ubuntu-fan.service  → /lib/systemd/system/ubuntu-fan.service.
+invoke-rc.d: policy-rc.d denied execution of start.
+Setting up pigz (2.4-1) ...
+Setting up docker.io (20.10.7-0ubuntu5~18.04.3) ...
+Adding group `docker' (GID 113) ...
+Done.
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+invoke-rc.d: policy-rc.d denied execution of start.
+Processing triggers for systemd (237-3ubuntu10.52) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Processing triggers for ureadahead (0.100.0-21) ...
+root@yy:~# snap install kubectl --classic
+2021-11-21T06:24:12Z INFO Waiting for automatic snapd restart...
+kubectl 1.22.4 from Canonical? installed
+root@yy:~# apt install snapd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+snapd is already the newest version (2.51.1+18.04).
+snapd set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+root@yy:~# snap install kubectl --classic
+snap "kubectl" is already installed, see 'snap help refresh'
+root@yy:~# wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 -O minikube
+--2021-11-21 06:26:07--  https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+Resolving storage.googleapis.com (storage.googleapis.com)... 172.217.31.144, 172.217.161.80, 142.251.42.208, ...
+Connecting to storage.googleapis.com (storage.googleapis.com)|172.217.31.144|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 69568775 (66M) [application/octet-stream]
+Saving to: ‘minikube’
+
+minikube            100%[===================>]  66.35M  5.73MB/s    in 11s
+
+2021-11-21 06:26:19 (5.83 MB/s) - ‘minikube’ saved [69568775/69568775]
+
+root@yy:~# apt install wget
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+wget is already the newest version (1.19.4-1ubuntu2.2).
+wget set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+root@yy:~# wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 -O minikube
+--2021-11-21 06:26:34--  https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+Resolving storage.googleapis.com (storage.googleapis.com)... 172.217.161.48, 172.217.31.176, 142.250.207.48, ...
+Connecting to storage.googleapis.com (storage.googleapis.com)|172.217.161.48|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 69568775 (66M) [application/octet-stream]
+Saving to: ‘minikube’
+
+minikube            100%[===================>]  66.35M  5.73MB/s    in 11s
+
+2021-11-21 06:26:46 (5.84 MB/s) - ‘minikube’ saved [69568775/69568775]
+
+root@yy:~# chmod 755 minikube
+root@yy:~# mv minikube /usr/local/bin/
+root@yy:~# minikube version
+minikube version: v1.24.0
+commit: 76b94fb3c4e8ac5062daf70d60cf03ddcc0a741b
+root@yy:~# minikube start --vm-driver=none
+* minikube v1.24.0 on Ubuntu 18.04
+* Using the none driver based on user configuration
+* Starting control plane node minikube in cluster minikube
+* Running on localhost (CPUs=4, Memory=3921MB, Disk=19018MB) ...
+* OS release is Ubuntu 18.04.6 LTS
+! This bare metal machine is having trouble accessing https://k8s.gcr.io
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.22.3 on Docker 20.10.7 ...
+  - kubelet.resolv-conf=/run/systemd/resolve/resolv.conf
+    > kubectl.sha256: 64 B / 64 B [--------------------------] 100.00% ? p/s 0s
+    > kubelet.sha256: 64 B / 64 B [--------------------------] 100.00% ? p/s 0s
+    > kubeadm.sha256: 64 B / 64 B [--------------------------] 100.00% ? p/s 0s
+    > kubectl: 44.73 MiB / 44.73 MiB [---------------] 100.00% 2.35 MiB p/s 19s
+    > kubeadm: 43.71 MiB / 43.71 MiB [---------------] 100.00% 2.00 MiB p/s 22s
+    > kubelet: 115.57 MiB / 115.57 MiB [-------------] 100.00% 3.32 MiB p/s 35s
+  - Generating certificates and keys ...
+  - Booting up control plane ...
+  - Configuring RBAC rules ...
+* Configuring local host environment ...
+*
+! The 'none' driver is designed for experts who need to integrate with an existing VM
+* Most users should use the newer 'docker' driver instead, which does not require root!
+* For more information, see: https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+*
+! kubectl and minikube configuration will be stored in /root
+! To use kubectl or minikube commands as your own user, you may need to relocate them. For example, to overwrite your own settings, run:
+*
+  - sudo mv /root/.kube /root/.minikube $HOME
+  - sudo chown -R $USER $HOME/.kube $HOME/.minikube
+*
+* This can also be done automatically by setting the env var CHANGE_MINIKUBE_NONE_USER=true
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: storage-provisioner, default-storageclass
+* Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+root@yy:~# minikube service list
+|-------------|------------|--------------|-----|
+|  NAMESPACE  |    NAME    | TARGET PORT  | URL |
+|-------------|------------|--------------|-----|
+| default     | kubernetes | No node port |
+| kube-system | kube-dns   | No node port |
+|-------------|------------|--------------|-----|
+root@yy:~# kubectl cluster-info
+Kubernetes control plane is running at https://192.168.0.110:8443
+CoreDNS is running at https://192.168.0.110:8443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+root@yy:~# kubectl version --client
+Client Version: version.Info{Major:"1", Minor:"22", GitVersion:"v1.22.4", GitCommit:"b695d79d4f967c403a96986f1750a35eb75e75f1", GitTreeState:"clean", BuildDate:"2021-11-18T02:34:11Z", GoVersion:"go1.16.10", Compiler:"gc", Platform:"linux/amd64"}
+root@yy:~# kubectl create deployment test-nginx --image=nginx
+deployment.apps/test-nginx created
+root@yy:~# kubectl get pod
+NAME                         READY   STATUS              RESTARTS   AGE
+test-nginx-59ffd87f5-nqv8s   0/1     ContainerCreating   0          7s
+root@yy:~# kubectl get pod
+NAME                         READY   STATUS              RESTARTS   AGE
+test-nginx-59ffd87f5-nqv8s   0/1     ContainerCreating   0          13s
+root@yy:~# kubectl get pod
+NAME                         READY   STATUS    RESTARTS   AGE
+test-nginx-59ffd87f5-nqv8s   1/1     Running   0          27s
+root@yy:~# kubectl delete -f test-nginx-59ffd87f5-nqv8s
+error: the path "test-nginx-59ffd87f5-nqv8s" does not exist
+root@yy:~#
+root@yy:~#
+root@yy:~#
